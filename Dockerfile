@@ -37,7 +37,7 @@ RUN mkdir /app
 # Set Workdir
 WORKDIR /app
 
-RUN ADD . /app
+ADD . /app
 
 EXPOSE 80
 
