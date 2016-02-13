@@ -44,4 +44,4 @@ EXPOSE 80
 RUN /etc/init.d/nginx start
 
 # Set Default Behavior
-ENTRYPOINT ["grails run-app"]
+ENTRYPOINT grails run-app
