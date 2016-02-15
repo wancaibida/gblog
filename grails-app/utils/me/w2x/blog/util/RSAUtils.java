@@ -28,7 +28,6 @@ import java.security.spec.RSAPublicKeySpec;
  */
 public abstract class RSAUtils
 {
-
     private static final Logger LOGGER = LoggerFactory.getLogger(RSAUtils.class);
 
     /**
