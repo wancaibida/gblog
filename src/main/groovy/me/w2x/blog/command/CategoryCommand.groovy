@@ -1,14 +1,13 @@
 package me.w2x.blog.command
 
-import me.w2x.blog.domain.Category
-import me.w2x.blog.bean.Regex
 import grails.validation.Validateable
+import me.w2x.blog.bean.Regex
+import me.w2x.blog.domain.Category
 
 /**
  * Created by charles.chen on 1/17/16.
  */
-@Validateable
-class CategoryCommand {
+class CategoryCommand implements Validateable {
     Long id
     Long parentId = 0L
     String name

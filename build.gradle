@@ -56,6 +56,9 @@ dependencies {
     compile 'commons-io:commons-io:2.4'
     compile 'org.apache.commons:commons-lang3:3.4'
     compile "org.bouncycastle:bcprov-jdk16:1.46"
+    compile "joda-time:joda-time:2.9.2"
+    compile "org.reflections:reflections:0.9.10"
+    compile "com.alibaba:fastjson:1.2.2"
 
 
 
@@ -64,12 +67,16 @@ dependencies {
     profile "org.grails.profiles:web:3.1.1"
     runtime "org.grails.plugins:asset-pipeline"
     runtime "com.h2database:h2"
+    runtime "org.postgresql:postgresql:9.4-1206-jdbc42"
 
     testCompile "org.grails:grails-plugin-testing"
     testCompile "org.grails.plugins:geb"
     testRuntime "org.seleniumhq.selenium:selenium-htmlunit-driver:2.47.1"
     testRuntime "net.sourceforge.htmlunit:htmlunit:2.18"
 
+    //plugins
+    runtime "org.grails.plugins:database-migration:1.4.1"
+    compile(group: 'org.grails.plugins', name: 'spring-security-core', version: '3.0.3')
 
 }
 

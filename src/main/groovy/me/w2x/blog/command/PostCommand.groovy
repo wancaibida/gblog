@@ -1,14 +1,13 @@
 package me.w2x.blog.command
 
+import grails.validation.Validateable
 import me.w2x.blog.domain.Category
 import me.w2x.blog.enu.PostStatus
-import grails.validation.Validateable
 
 /**
  * Created by charles.chen on 1/24/16.
  */
-@Validateable
-class PostCommand {
+class PostCommand implements Validateable {
     Long id
     String title
     Long categoryId

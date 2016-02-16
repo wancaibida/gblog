@@ -1,13 +1,12 @@
 package me.w2x.blog.command
 
-import me.w2x.blog.domain.Menu
 import grails.validation.Validateable
+import me.w2x.blog.domain.Menu
 
 /**
  * Created by charles.chen on 1/8/16.
  */
-@Validateable
-class MenuCommand {
+class MenuCommand implements Validateable {
     Long id
     String name
     String alias

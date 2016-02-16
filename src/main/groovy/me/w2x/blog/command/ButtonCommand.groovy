@@ -5,8 +5,7 @@ import grails.validation.Validateable
 /**
  * Created by charles.chen on 1/16/16.
  */
-@Validateable
-class ButtonCommand {
+class ButtonCommand implements Validateable {
     Long id
     String name
     String alias
