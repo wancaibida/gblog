@@ -1,13 +1,6 @@
-
-
 class UrlMappings {
 
     static mappings = {
-        "/$controller/$action?/$id?(.$format)?" {
-            constraints {
-                // apply constraints here
-            }
-        }
 
         "/"(controller: "post") {
             action = [GET: 'index']
@@ -97,6 +90,12 @@ class UrlMappings {
 
         "/contact"(controller: 'other') {
             action = [GET: 'contact']
+        }
+
+        "/$controller/$action?/$id?(.$format)?" {
+            constraints {
+                // apply constraints here
+            }
         }
     }
 }
