@@ -1,9 +1,9 @@
 package me.w2x.blog.controller.front.post
 
-import me.w2x.blog.domain.Category
-import me.w2x.blog.domain.Post
 import me.w2x.blog.bean.PostFilter
 import me.w2x.blog.controller.common.BaseController
+import me.w2x.blog.domain.Category
+import me.w2x.blog.domain.Post
 
 import javax.servlet.http.HttpServletResponse
 
@@ -15,7 +15,7 @@ class PostController extends BaseController {
     def categoryMgrService
 
     def index() {
-        def (total, posts, pageCount) = postMgrService.getPosts(filter)
+        def (total, posts, pageCount) = postMgrService.getPosts(searchFilter)
         render(view: '/front/post/postList',
                 model: [
                         posts      : posts,
@@ -35,7 +35,7 @@ class PostController extends BaseController {
         render(view: '/front/post/postView', model: [post: post])
     }
 
-    def getFilter() {
+    def getSearchFilter() {
         def filter = new PostFilter()
         filter.with {
             page = params.int('page', 1)

@@ -133,7 +133,7 @@ environments {
             username = "blog"
             password = "blog"
             logSql = false
-            properties {
+            properties = {
                 // See http://grails.org/doc/latest/guide/conf.html#dataSource for documentation
                 jmxEnabled = true
                 initialSize = 5

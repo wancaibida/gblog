@@ -3,7 +3,14 @@
     String path = request.getContextPath();
     String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path + "/";
 %>
+<html>
 
+<head>
+    <title></title>
+</head>
+
+
+<body>
 <div class="container">
     <div class="row">
         <main class="col-md-8">
@@ -123,3 +130,5 @@
         </div>
     </div>
 </div>
+</body>
+</html>
