@@ -50,7 +50,7 @@
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                         <ul class="nav navbar-nav navbar-right">
                             <li class="cl-effect-11"><a href="${basePath}">首页</a></li>
-                            <li class="cl-effect-11"><a href="${basePath}">文章</a></li>
+                            <li class="cl-effect-11"><a href="${basePath}posts">文章</a></li>
                             <li class="cl-effect-11"><a href="${basePath}about">关于</a></li>
                             <li class="cl-effect-11"><a href="${basePath}contact">联系</a></li>
                         </ul>
