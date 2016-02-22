@@ -181,17 +181,18 @@ sequence.flushInterval = 30
 grails.gorm.failOnError = true
 
 // Spring Security
-grails.plugin.springsecurity.auth.loginFormUrl = '/admin/user/auth'
-grails.plugin.springsecurity.auth.ajaxLoginFormUrl = '/admin/user/auth?ajax=true'
-grails.plugin.springsecurity.apf.filterProcessesUrl = '/admin/user/j_spring_security_check'
-grails.plugin.springsecurity.logout.filterProcessesUrl = '/admin/user/j_spring_security_logout'
+grails.plugin.springsecurity.auth.loginFormUrl = '/admin/login/auth'
+grails.plugin.springsecurity.auth.ajaxLoginFormUrl = '/admin/login/auth?ajax=true'
+grails.plugin.springsecurity.apf.filterProcessesUrl = '/admin/login/authenticate'
+grails.plugin.springsecurity.logout.filterProcessesUrl = '/admin/login/logoff'
 grails.plugin.springsecurity.logout.postOnly = false
 grails.plugin.springsecurity.apf.usernameParameter = 'username'
 grails.plugin.springsecurity.apf.passwordParameter = 'password'
 grails.plugin.springsecurity.password.algorithm = 'bcrypt'
 grails.plugin.springsecurity.password.bcrypt.logrounds = 15
 
-grails.plugin.springsecurity.failureHandler.ajaxAuthFailUrl = '/admin/user/authfail?ajax=true'
+grails.plugin.springsecurity.failureHandler.ajaxAuthFailUrl = '/admin/login/authfail?ajax=true'
+grails.plugin.springsecurity.successHandler.ajaxSuccessUrl = '/admin/login/authsuccess?ajax=true'
 
 // Added by the Spring Security Core plugin:
 grails.plugin.springsecurity.rejectIfNoRule = true
@@ -207,7 +208,7 @@ grails.plugin.springsecurity.interceptUrlMap = [
         [pattern: '/**/css/**', access: ['permitAll']],
         [pattern: '/**/images/**', access: ['permitAll']],
         [pattern: '/**/favicon.ico', access: ['permitAll']],
-        [pattern: '/admin/user/**', access: ['permitAll']],
+        [pattern: '/admin/login/**', access: ['permitAll']],
         [pattern: '/admin/**', access: ['ROLE_ADMIN']],
         [pattern: '/**', access: ['permitAll']]
 ]

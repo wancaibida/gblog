@@ -35,7 +35,7 @@ $(function () {
             type: 'post',
             cache: false,
             dataType: 'json',
-            url: adminPath + "user/j_spring_security_check",
+            url: adminPath + "login/authenticate",
             data: {
                 username: username,
                 password: password

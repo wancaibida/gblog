@@ -11,16 +11,10 @@ class UrlMappings {
         group "/admin", {
             "/"(controller: "index", action: "index", method: "GET")
 
-            "/user/auth"(controller: "user") {
-                action = [GET: 'auth']
-            }
-
-            "/user/authfail"(controller: "user") {
-                action = [GET: 'authfail']
-            }
-
-            "/user/j_spring_security_check"(controller: "user") {
-                action = [GET: 'doLogin']
+            group "/login", {
+                "/auth"(controller: "user", action: "auth", method: "GET")
+                "/authfail"(controller: "user", action: "authfail", method: "GET")
+                "/authsuccess"(controller: "user", action: "authsuccess", method: "GET")
             }
 
             "/menu"(controller: "index") {
