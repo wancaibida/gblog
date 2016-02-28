@@ -17,9 +17,14 @@ class UrlMappings {
                 "/authsuccess"(controller: "user", action: "authsuccess", method: "GET")
             }
 
-            "/menu"(controller: "index") {
-                action = [GET: 'menus', POST: 'menus']
+            "/allMenus"(controller: "index") {
+                action = [GET: 'allMenus', POST: 'allMenus']
             }
+
+            "/menu"(controller: "index") {
+                action = [GET: 'allMenus', POST: 'allMenus']
+            }
+
             "/buttons"(controller: "index", action: "buttons", method: "GET")
             "/menus"(controller: "menuMgr") {
                 action = [GET: 'index', POST: 'add']

@@ -59,7 +59,8 @@ class BaseService {
 
 
     def getGridData(String domainClassName, String where, int page, int pageSize, String sort, String sortOrder) {
-        def domainClass = grailsApplication.getDomainClass(domainClassName).clazz
+        def fullClassName = "me.w2x.blog.domain.${domainClassName}".toString()
+        def domainClass = grailsApplication.getDomainClass(fullClassName).clazz
         def simpleName = domainClass.simpleName
 
         def countHql = "select count(*) from ${simpleName}"

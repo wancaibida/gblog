@@ -53,7 +53,7 @@ $(function () {
 
     var mainmenu = $("#mainmenu");
 
-    $.get(adminPath + 'menu', {}, function (menus) {
+    $.get(adminPath + 'allMenus', {}, function (menus) {
         renderMenu(menus)
     }, 'json');
 

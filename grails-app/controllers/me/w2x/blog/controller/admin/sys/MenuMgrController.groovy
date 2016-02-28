@@ -1,10 +1,11 @@
 package me.w2x.blog.controller.admin.sys
 
-import me.w2x.blog.domain.Button
-import me.w2x.blog.domain.Menu
+import grails.converters.JSON
 import me.w2x.blog.command.ButtonCommand
 import me.w2x.blog.command.MenuCommand
 import me.w2x.blog.controller.common.BaseController
+import me.w2x.blog.domain.Button
+import me.w2x.blog.domain.Menu
 
 import javax.servlet.http.HttpServletResponse
 
@@ -19,16 +20,12 @@ class MenuMgrController extends BaseController {
         new File(iconPath)?.listFiles()?.each {
             icons << it.name
         }
-        render(contentType: 'application/json', {
-            icons
-        })
+        render icons as JSON
     }
 
     def index() {
         if (request.isXhr()) {
-            render(contentType: 'application/json', {
-                getGrid('Menu')
-            })
+            render(getGrid('Menu') as JSON)
         } else {
             render(view: '/admin/sys/menu')
         }
@@ -56,9 +53,7 @@ class MenuMgrController extends BaseController {
     def parents() {
         def menuId = params.long('menuId')
         def list = menuMgrService.listParentMenus(menuId)
-        render(status: HttpServletResponse.SC_OK, contentType: 'application/json') {
-            list
-        }
+        render list as JSON
     }
 
     def delete() {
@@ -74,9 +69,7 @@ class MenuMgrController extends BaseController {
 
     def buttons() {
         if (request.isXhr()) {
-            render(contentType: 'application/json', {
-                getGrid('Button')
-            })
+            render getGrid('Button') as JSON
         } else {
             def menu = Menu.get(params.long('menuId'))
             render(view: '/admin/sys/button', model: [alias: menu?.alias])

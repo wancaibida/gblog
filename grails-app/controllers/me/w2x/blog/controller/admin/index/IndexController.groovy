@@ -16,16 +16,13 @@ class IndexController {
         render(view: '/admin/index/index', model: [menus: menuJson])
     }
 
-    def menus() {
-        render(contentType: 'application/json', {
-            Menu.list(sort: '_sort', order: 'asc')
-        })
+    def allMenus() {
+        def menus = Menu.list(sort: '_sort', order: 'asc')
+        render menus as JSON
     }
 
     def buttons() {
         String menuAlias = params.alias
-        render(contentType: 'application/json', {
-            Button.findAllByMenuAlias(menuAlias)
-        })
+        render Button.findAllByMenuAlias(menuAlias) as JSON
     }
 }

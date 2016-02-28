@@ -1,5 +1,6 @@
 package me.w2x.blog.controller.admin.post
 
+import grails.converters.JSON
 import me.w2x.blog.command.CategoryCommand
 import me.w2x.blog.controller.common.BaseController
 import me.w2x.blog.domain.Category
@@ -12,9 +13,7 @@ class CategoryMgrController extends BaseController {
 
     def index() {
         if (request.xhr) {
-            render(contentType: 'application/json', {
-                getGrid(Category.class.canonicalName)
-            })
+            render(getGrid(Category.class.getSimpleName()) as JSON)
         } else {
             render(view: '/admin/post/category')
         }
@@ -51,8 +50,6 @@ class CategoryMgrController extends BaseController {
     }
 
     def parents() {
-        render(status: HttpServletResponse.SC_OK, contentType: 'application/json') {
-            categoryMgrService.listParentCategorys(params.long('categoryId'))
-        }
+        render categoryMgrService.listParentCategorys(params.long('categoryId')) as JSON
     }
 }
