@@ -218,4 +218,13 @@ grails.plugin.springsecurity.filterChain.chainMap = [
         [pattern: '/**', filters: 'none']
 ]
 
+grails.plugin.springsecurity.providerNames = [
+        'rememberMeAuthenticationProvider',
+        'anonymousAuthenticationProvider',
+        'daoAuthenticationProvider']
+
+grails.plugin.springsecurity.rememberMe.alwaysRemember = true
+grails.plugin.springsecurity.rememberMe.alwaysRemember = true
+grails.plugin.springsecurity.rememberMe.persistent = true
+grails.plugin.springsecurity.rememberMe.persistentToken.domainClassName = 'me.w2x.blog.domain.PersistentLogin'
 

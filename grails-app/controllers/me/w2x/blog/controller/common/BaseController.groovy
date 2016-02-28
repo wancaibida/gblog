@@ -1,5 +1,6 @@
 package me.w2x.blog.controller.common
 
+import grails.plugin.springsecurity.SpringSecurityUtils
 import me.w2x.blog.bean.QueryResult
 import me.w2x.blog.exception.CommandException
 
@@ -12,14 +13,14 @@ abstract class BaseController {
         [Total: queryResult.total, Rows: queryResult.data]
     }
 
-    def getGrid(String className) {
+    def getGrid(Class domainClass) {
         def rawWhere = params.where as String
         def page = params.int('page', 1)
         def pageSize = params.int('pagesize', 10)
         def sort = params.sortname as String
         def sortOrder = params.sortorder as String
 
-        baseService.getGridData(className, rawWhere, page, pageSize, sort, sortOrder)
+        baseService.getGridData(domainClass, rawWhere, page, pageSize, sort, sortOrder)
     }
 
     def handleValidation(command) {
@@ -52,6 +53,10 @@ abstract class BaseController {
         render(contentType: 'application/json', {
             data
         })
+    }
+
+    protected ConfigObject getConf() {
+        SpringSecurityUtils.securityConfig
     }
 
 

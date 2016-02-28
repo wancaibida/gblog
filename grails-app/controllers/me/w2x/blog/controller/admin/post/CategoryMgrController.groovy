@@ -13,7 +13,7 @@ class CategoryMgrController extends BaseController {
 
     def index() {
         if (request.xhr) {
-            render(getGrid(Category.class.getSimpleName()) as JSON)
+            render(getGrid(Category.class) as JSON)
         } else {
             render(view: '/admin/post/category')
         }

@@ -25,7 +25,7 @@ class MenuMgrController extends BaseController {
 
     def index() {
         if (request.isXhr()) {
-            render(getGrid('Menu') as JSON)
+            render(getGrid(Menu.class) as JSON)
         } else {
             render(view: '/admin/sys/menu')
         }
@@ -69,7 +69,7 @@ class MenuMgrController extends BaseController {
 
     def buttons() {
         if (request.isXhr()) {
-            render getGrid('Button') as JSON
+            render getGrid(Button.class) as JSON
         } else {
             def menu = Menu.get(params.long('menuId'))
             render(view: '/admin/sys/button', model: [alias: menu?.alias])

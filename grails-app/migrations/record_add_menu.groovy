@@ -5,7 +5,6 @@ databaseChangeLog = {
             change {
                 sql.execute("INSERT INTO t_menu ( ID, n_parent_id,s_alias,s_name,s_url,n_sort,s_icon ) VALUES ( 1, 0, 'post', '文章管理', '', 3, 'edit.gif' )")
                 sql.execute("INSERT INTO t_menu ( ID, n_parent_id,s_alias,s_name,s_url,n_sort,s_icon ) VALUES ( 2, 1, 'postList', '所有文章', 'posts/', 3, 'feed.gif' )")
-                sql.execute("INSERT INTO t_menu ( ID, n_parent_id,s_alias,s_name,s_url,n_sort,s_icon ) VALUES ( 3, 1, 'postMgr', '发布文章', 'postMgr/view.do', 4, 'plus.gif' )")
                 sql.execute("INSERT INTO t_menu ( ID, n_parent_id,s_alias,s_name,s_url,n_sort,s_icon ) VALUES ( 4, 1, 'categoryMgr', '分类目录', 'categorys', 2, 'calendar.gif' )")
             }
         }

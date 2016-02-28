@@ -10,7 +10,8 @@ import javax.servlet.http.HttpServletResponse
 class UserController extends BaseController {
 
     def auth() {
-        render(view: '/admin/user/login')
+        render(view: '/admin/user/login', model:
+                [rememberMeParameter: conf.rememberMe.parameter])
     }
 
     def authfail() {
