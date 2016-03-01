@@ -227,5 +227,5 @@ grails.plugin.springsecurity.providerNames = [
 grails.plugin.springsecurity.rememberMe.alwaysRemember = true
 grails.plugin.springsecurity.rememberMe.alwaysRemember = true
 grails.plugin.springsecurity.rememberMe.persistent = true
-grails.plugin.springsecurity.rememberMe.persistentToken.domainClassName = 'me.w2x.blog.domain.PersistentLogin'
+grails.plugin.springsecurity.rememberMe.persistentToken.domainClassName = 'me.w2x.blog.domain.session'
 

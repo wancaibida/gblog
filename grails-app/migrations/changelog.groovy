@@ -11,6 +11,7 @@ databaseChangeLog = {
     include file: 'table_create_t_category.groovy'
     include file: 'table_create_t_button.groovy'
     include file: 'table_create_sequence.groovy'
+    include file: 'table_create_t_session.groovy'
     include file: 'record_add_menu.groovy'
     include file: 'record_add_button.groovy'
     include file: 'record_add_role.groovy'
