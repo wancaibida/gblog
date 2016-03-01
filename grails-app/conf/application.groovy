@@ -159,6 +159,7 @@ environments {
 
 
 grails.plugin.databasemigration.updateOnStart = true
+grails.plugin.databasemigration.changelogLocation = 'grails-app/migrations'
 grails.plugin.databasemigration.updateOnStartFileNames = ['changelog.groovy']
 grails.plugin.databasemigration.dropOnStart = (Environment.current == Environment.DEVELOPMENT)
 

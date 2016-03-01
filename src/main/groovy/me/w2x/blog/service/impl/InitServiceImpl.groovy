@@ -26,7 +26,7 @@ class InitServiceImpl implements InitService {
             return
         }
 
-        def reflections = new Reflections("m2.w2x.blog.enu")
+        def reflections = new Reflections("me.w2x.blog.enu")
         def classes = reflections.getSubTypesOf(Dict.class)
         def dictMap = new CaseInsensitiveMap()
         for (def clazz : classes) {

@@ -64,7 +64,7 @@ class CategoryMgrService {
                              FROM
                               t_category
                              WHERE
-                              ID = ?
+                              ID = :id
                              UNION ALL
                               SELECT
                                t_category.*
