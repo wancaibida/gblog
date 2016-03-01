@@ -3,6 +3,8 @@ package me.w2x.blog.controller.common
 import grails.plugin.springsecurity.SpringSecurityUtils
 import me.w2x.blog.bean.QueryResult
 import me.w2x.blog.exception.CommandException
+import org.springframework.security.core.Authentication
+import org.springframework.security.core.context.SecurityContextHolder
 
 import javax.servlet.http.HttpServletResponse
 
@@ -57,6 +59,11 @@ abstract class BaseController {
 
     protected ConfigObject getConf() {
         SpringSecurityUtils.securityConfig
+    }
+
+
+    def Authentication getAuthentication() {
+        SecurityContextHolder.context?.authentication
     }
 
 

@@ -48,7 +48,8 @@
                         <td align="left">
                             <input type="checkbox" name="${rememberMeParameter}"
                                    id="${rememberMeParameter}"
-                                   class="login-text"/>
+                                   class="login-text"
+                                   <g:if test='${hasCookie}'>checked="checked"</g:if>/>
                         </td>
                     </tr>
                     <tr>

@@ -38,7 +38,8 @@ $(function () {
             url: adminPath + "login/authenticate",
             data: {
                 username: username,
-                password: password
+                password: password,
+                'remember-me': $("#remember-me").is(":checked")
             },
             success: function (result) {
                 if (result.error) {

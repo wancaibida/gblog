@@ -9,9 +9,14 @@ import javax.servlet.http.HttpServletResponse
  */
 class UserController extends BaseController {
 
+    def authenticationTrustResolver
+
     def auth() {
         render(view: '/admin/user/login', model:
-                [rememberMeParameter: conf.rememberMe.parameter])
+                [
+                        rememberMeParameter: conf.rememberMe.parameter,
+                        hasCookie          : authenticationTrustResolver.isRememberMe(authentication)
+                ])
     }
 
     def authfail() {
