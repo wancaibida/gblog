@@ -47,9 +47,9 @@ $(function () {
                     });
                 }
                 else {
-                    LG.showSuccess('登陆成功!', function () {
-                        location.href = basePath + "admin";
-                    });
+                    location.href = basePath + "admin";
+                    //LG.showSuccess('登陆成功!', function () {
+                    //});
                 }
             },
             error: function () {

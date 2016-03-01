@@ -45,6 +45,8 @@ grails.views.default.codec = "html"
 // If unspecified, controllers are prototype scoped.
 grails.controllers.defaultScope = 'singleton'
 
+grails.gsp.enable.reload = (Environment.current == Environment.DEVELOPMENT)
+
 // GSP settings
 grails {
     views {
@@ -224,8 +226,7 @@ grails.plugin.springsecurity.providerNames = [
         'anonymousAuthenticationProvider',
         'daoAuthenticationProvider']
 
-grails.plugin.springsecurity.rememberMe.alwaysRemember = true
-grails.plugin.springsecurity.rememberMe.alwaysRemember = true
+grails.plugin.springsecurity.rememberMe.alwaysRemember = false
 grails.plugin.springsecurity.rememberMe.persistent = true
-grails.plugin.springsecurity.rememberMe.persistentToken.domainClassName = 'me.w2x.blog.domain.session'
+grails.plugin.springsecurity.rememberMe.persistentToken.domainClassName = 'me.w2x.blog.domain.Session'
 

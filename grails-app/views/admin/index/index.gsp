@@ -27,7 +27,7 @@
     <div class="l-topmenu-welcome">
         <span class="l-topmenu-username"></span>欢迎您 &nbsp;
     [<a href="javascript:LG.changepassword()">修改密码</a>] &nbsp;
-    [<a href="${webRequest.baseUrl}/admin/user/j_spring_security_logout">退出</a>]
+    [<a href="${webRequest.baseUrl}/admin/login/logoff">退出</a>]
     </div>
 
 </div>

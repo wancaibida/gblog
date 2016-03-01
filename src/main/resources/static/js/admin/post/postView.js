@@ -31,8 +31,13 @@ $(function () {
                 "text json": JSON2.parse
             },
             success: function () {
-                alert('操作成功');
-                window.close();
+                alert('保存成功!');
+                if (!(window === window.parent)) {
+                    window.parent.LG.closeCurrentTab(null);
+                }
+                else {
+                    window.close();
+                }
             },
             error: function (data) {
                 var json = data['responseJSON'];
