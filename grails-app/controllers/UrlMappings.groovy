@@ -64,6 +64,10 @@ class UrlMappings {
             "/posts/view"(controller: "postMgr") {
                 action = [GET: 'view']
             }
+
+            "/password/reset"(controller: 'user') {
+                action = [POST: 'updatePassword']
+            }
         }
 
 

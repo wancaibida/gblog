@@ -12,24 +12,24 @@
             fields: [
                 {
                     display: '旧密码',
-                    name: 'OldPassword',
+                    name: 'oldPassword',
                     type: 'password',
                     validate: {maxlength: 50, required: true, messages: {required: '请输入密码'}}
                 },
                 {
                     display: '新密码',
-                    name: 'NewPassword',
+                    name: 'newPassword',
                     type: 'password',
                     validate: {maxlength: 50, required: true, messages: {required: '请输入密码'}}
                 },
                 {
                     display: '确认密码',
-                    name: 'NewPassword2',
+                    name: 'newPassword2',
                     type: 'password',
                     validate: {
                         maxlength: 50,
                         required: true,
-                        equalTo: 'input[name=NewPassword]',
+                        equalTo: 'input[name=newPassword]',
                         messages: {
                             required: '请输入密码',
                             equalTo: '两次密码输入不一致'
@@ -69,16 +69,16 @@
     }
 
     function doChangePassword() {
-        var OldPassword = $("input[name=OldPassword]").val();
-        var LoginPassword = $("input[name=NewPassword]").val();
+        var oldPassword = $("input[name=oldPassword]").val();
+        var LoginPassword = $("input[name=newPassword]").val();
         if (changePasswordPanle.valid()) {
 
             var key = RSAUtils.getKeyPair(exponent, '', modulus);
-            var enOldPassword = RSAUtils.encryptedString(key, OldPassword);
+            var enOldPassword = RSAUtils.encryptedString(key, oldPassword);
             var enNewPassword = RSAUtils.encryptedString(key, LoginPassword);
 
             $.ajax({
-                url: adminPath + "userMgr/changePassword.do",
+                url: adminPath + "password/reset",
                 data: {
                     oldPassword: enOldPassword,
                     newPassword: enNewPassword

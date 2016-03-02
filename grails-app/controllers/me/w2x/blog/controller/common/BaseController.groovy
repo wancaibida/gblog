@@ -1,5 +1,6 @@
 package me.w2x.blog.controller.common
 
+import grails.converters.JSON
 import grails.plugin.springsecurity.SpringSecurityUtils
 import me.w2x.blog.bean.QueryResult
 import me.w2x.blog.exception.CommandException
@@ -52,9 +53,7 @@ abstract class BaseController {
             data.errorId = errorCode
         }
 
-        render(contentType: 'application/json', {
-            data
-        })
+        render data as JSON
     }
 
     protected ConfigObject getConf() {
