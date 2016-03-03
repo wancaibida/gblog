@@ -41,10 +41,14 @@ abstract class BaseController {
 
     def handleCommandException(CommandException exception) {
         def errors = exception.errors
-        renderJsonResponse(HttpServletResponse.SC_BAD_REQUEST, message(code: errors[0]), null)
+        renderResponse(HttpServletResponse.SC_BAD_REQUEST, message(code: errors[0]), null)
     }
 
-    def renderJsonResponse(statusCode, errorMessage, errorCode) {
+    def renderResponse(statusCode, errorMessage) {
+        renderResponse(statusCode, errorMessage, null)
+    }
+
+    def renderResponse(statusCode, errorMessage, errorCode) {
         response.status = statusCode
         def data = [:]
         data.errorId = response.status

@@ -13,6 +13,8 @@ class UserController extends BaseController {
 
     def authenticationTrustResolver
 
+    def passwordService
+
     def auth() {
         render(view: '/admin/user/login', model:
                 [
@@ -23,9 +25,7 @@ class UserController extends BaseController {
 
     def authfail() {
         if (params.boolean('ajax')) {
-            render(contentType: 'application/json', {
-                [error: 'error password or user name']
-            })
+            renderResponse(HttpServletResponse.SC_BAD_REQUEST, message(code: 'user.password.not.correct'))
         } else {
             redirect(action: 'auth')
         }
@@ -33,28 +33,21 @@ class UserController extends BaseController {
 
     def authsuccess() {
         if (params.boolean('ajax')) {
-            render(contentType: 'application/json', {
-            })
+            render(status: HttpServletResponse.SC_OK)
         } else {
             render(status: HttpServletResponse.SC_OK)
         }
     }
 
     def updatePassword() {
-//        def user = User.get(params.userId)
-//        if (!user) {
-//            renderJsonResponse(HttpServletResponse.SC_BAD_REQUEST, 'user.does.exist', 'user.does.exist')
-//            return
-//        }
+        def rsaOldPassword = params.oldPassword
+        def rsaNewPassword = params.newPassword
 
-        def encodedOldPassword = params.oldPassword
-        def encodedNewPassword = params.newPassword
-
-        def oldPassword = RSAUtils.decryptStringByJs(encodedOldPassword)
-        def newPassword = RSAUtils.decryptStringByJs(encodedNewPassword)
+        def oldPassword = RSAUtils.decryptStringByJs(rsaOldPassword)
+        def newPassword = RSAUtils.decryptStringByJs(rsaNewPassword)
 
         if (!newPassword) {
-            renderJsonResponse(HttpServletResponse.SC_BAD_REQUEST, 'password null', 'password null')
+            renderResponse(HttpServletResponse.SC_BAD_REQUEST, message(code: 'user.newpassword.not.null'))
             return
         }
 
@@ -63,14 +56,15 @@ class UserController extends BaseController {
 
         def currentUser = User.get(userId)
         if (!currentUser) {
-            renderJsonResponse(HttpServletResponse.SC_BAD_REQUEST, 'user null', 'user null')
+            renderResponse(HttpServletResponse.SC_BAD_REQUEST, message(code: 'user.not.exist'))
             return
         }
 
-        def expectedEncodedOldPassword=currentUser.password
-//        if(expectedEncodedOldPassword.equals())
-
-
-        render(status: HttpServletResponse.SC_OK)
+        if (passwordService.isPasswordValid(currentUser.password, oldPassword)) {
+            passwordService.updatePassword(currentUser, newPassword)
+            render(status: HttpServletResponse.SC_OK)
+        } else {
+            return renderResponse(HttpServletResponse.SC_BAD_REQUEST, message(code: 'user.password.not.correct'))
+        }
     }
 }

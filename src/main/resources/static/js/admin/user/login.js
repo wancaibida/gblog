@@ -42,19 +42,19 @@ $(function () {
                 'remember-me': $("#remember-me").is(":checked")
             },
             success: function (result) {
-                if (result.error) {
-                    LG.showError(result.error, function () {
-                        $("#username").focus();
-                    });
-                }
-                else {
+                //if (result.error) {
+                //    LG.showError(result.error, function () {
+                //        $("#username").focus();
+                //    });
+                //}
+                //else {
                     location.href = basePath + "admin";
                     //LG.showSuccess('登陆成功!', function () {
                     //});
-                }
+                //}
             },
-            error: function () {
-                alert('发送系统错误,请与系统管理员联系!');
+            error: function (result) {
+                alert(result.responseJSON.errorMessage);
             },
             beforeSend: function () {
                 $.ligerDialog.waitting("正在登陆中,请稍后...");

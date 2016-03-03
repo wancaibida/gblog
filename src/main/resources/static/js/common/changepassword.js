@@ -97,8 +97,8 @@
                     }
 
                 },
-                error: function () {
-                    console.log(arguments);
+                error: function (result) {
+                    LG.showError(result.responseJSON.errorMessage);
                 }
             });
 
