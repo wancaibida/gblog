@@ -8,7 +8,11 @@
           href="${webRequest.baseUrl}/static/css/admin/login/login.css"/>
     <script type="text/javascript"
             src="${webRequest.baseUrl}/static/js/admin/user/login.js"></script>
-    %{--<script type="text/javascript" src="${webRequest.baseUrl}/static/js/common/security.js"></script>--}%
+    <script type="text/javascript" src="${webRequest.baseUrl}/static/js/common/security.js"></script>
+    <script type="text/javascript">
+        var modulus = '${application.modulus}';
+        var exponent = '${application.exponent}';
+    </script>
 </head>
 
 <body style="padding:10px">

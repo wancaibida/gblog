@@ -29,8 +29,8 @@ $(function () {
             return;
         }
 
-        //var key = RSAUtils.getKeyPair(exponent, '', modulus);
-        //var enPassword = RSAUtils.encryptedString(key, password);
+        var key = RSAUtils.getKeyPair(exponent, '', modulus);
+        var enPassword = RSAUtils.encryptedString(key, password);
         $.ajax({
             type: 'post',
             cache: false,
@@ -38,7 +38,7 @@ $(function () {
             url: adminPath + "login/authenticate",
             data: {
                 username: username,
-                password: password,
+                password: enPassword,
                 'remember-me': $("#remember-me").is(":checked")
             },
             success: function (result) {
@@ -48,9 +48,9 @@ $(function () {
                 //    });
                 //}
                 //else {
-                    location.href = basePath + "admin";
-                    //LG.showSuccess('登陆成功!', function () {
-                    //});
+                location.href = basePath + "admin";
+                //LG.showSuccess('登陆成功!', function () {
+                //});
                 //}
             },
             error: function (result) {
