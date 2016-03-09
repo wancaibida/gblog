@@ -6,7 +6,8 @@ import me.w2x.blog.domain.account.UserRole
 class BootStrap {
 
     def init = { servletContext ->
-        def admin = User.findByUsername('admin')
+        def adminUsername = 'admin'
+        def admin = User.findByUsername(adminUsername)
         if (!admin) {
             def password
             if (Environment.current == Environment.DEVELOPMENT || Environment.current == Environment.TEST) {
@@ -15,7 +16,7 @@ class BootStrap {
                 password = System.properties['password']
             }
             assert password
-            admin = new User(username: 'admin', password: 'test123').save()
+            admin = new User(username: adminUsername, password: password).save()
             UserRole.create(admin, Role.findByAuthority('ROLE_ADMIN'), true)
         }
     }
