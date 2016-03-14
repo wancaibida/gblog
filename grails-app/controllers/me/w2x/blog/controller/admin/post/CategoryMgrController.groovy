@@ -13,7 +13,7 @@ class CategoryMgrController extends BaseController {
 
     def index() {
         if (request.xhr) {
-            render(getGrid(Category.class) as JSON)
+            render(getGrid(Category) as JSON)
         } else {
             render(view: '/admin/post/category')
         }
@@ -24,7 +24,7 @@ class CategoryMgrController extends BaseController {
             return handleValidation(command)
         }
         def category = categoryMgrService.addCategory(command)
-        render(status: HttpServletResponse.SC_OK, contentType: 'application/json') {
+        render(status: HttpServletResponse.SC_OK, contentType: CONTENT_TYPE_JSON) {
             id = category.id
         }
     }
@@ -34,7 +34,7 @@ class CategoryMgrController extends BaseController {
             return handleValidation(command)
         }
         categoryMgrService.updateCategory(command)
-        render(status: HttpServletResponse.SC_OK, contentType: 'application/json') {
+        render(status: HttpServletResponse.SC_OK, contentType: CONTENT_TYPE_JSON) {
         }
     }
 
@@ -48,6 +48,7 @@ class CategoryMgrController extends BaseController {
         categoryMgrService.deleteCategory(category)
         render(status: HttpServletResponse.SC_NO_CONTENT)
     }
+
 
     def parents() {
         render categoryMgrService.listParentCategorys(params.long('categoryId')) as JSON

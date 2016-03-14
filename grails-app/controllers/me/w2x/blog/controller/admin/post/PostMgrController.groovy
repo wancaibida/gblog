@@ -1,10 +1,10 @@
 package me.w2x.blog.controller.admin.post
 
 import grails.converters.JSON
-import me.w2x.blog.domain.Category
-import me.w2x.blog.domain.Post
 import me.w2x.blog.command.PostCommand
 import me.w2x.blog.controller.common.BaseController
+import me.w2x.blog.domain.Category
+import me.w2x.blog.domain.Post
 
 import javax.servlet.http.HttpServletResponse
 
@@ -47,7 +47,7 @@ class PostMgrController extends BaseController {
         }
 
         postMgrService.add(command)
-        render(status: HttpServletResponse.SC_OK, contentType: 'application/json') {
+        render(status: HttpServletResponse.SC_OK, contentType: CONTENT_TYPE_JSON) {
         }
     }
 
@@ -62,18 +62,18 @@ class PostMgrController extends BaseController {
         }
 
         postMgrService.update(command)
-        render(status: HttpServletResponse.SC_OK, contentType: 'application/json') {
+        render(status: HttpServletResponse.SC_OK, contentType: CONTENT_TYPE_JSON) {
         }
     }
 
     def delete() {
         def id = params.long('postId')
         def post = Post.get(id)
-        if (!post) {
-            render(status: HttpServletResponse.SC_NOT_FOUND)
-        } else {
+        if (post) {
             postMgrService.delete(post)
             render(status: HttpServletResponse.SC_NO_CONTENT)
+        } else {
+            render(status: HttpServletResponse.SC_NOT_FOUND)
         }
     }
 }

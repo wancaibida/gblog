@@ -110,7 +110,7 @@ codenarcMain {
     maxPriority2Violations = 0
     maxPriority3Violations = 0
     reports.html.enabled = true
-//    reportsDir = 'target/'
+    exclude "UrlMappings.groovy"
 }
 
 codenarcTest {

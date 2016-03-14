@@ -125,9 +125,9 @@ ruleset {
 
     // rulesets/dry.xml
     DuplicateListLiteral
-    DuplicateMapLiteral
+//    DuplicateMapLiteral
 //    DuplicateNumberLiteral
-    DuplicateStringLiteral
+//    DuplicateStringLiteral
 
     // rulesets/enhanced.xml
     CloneWithoutCloneable

@@ -36,7 +36,7 @@ class MenuMgrController extends BaseController {
             return handleValidation(command)
         }
         def menu = menuMgrService.addMenu(command)
-        render(status: HttpServletResponse.SC_OK, contentType: 'application/json') {
+        render(status: HttpServletResponse.SC_OK, contentType: CONTENT_TYPE_JSON) {
             id = menu.id
         }
     }
@@ -46,7 +46,7 @@ class MenuMgrController extends BaseController {
             return handleValidation(command)
         }
         menuMgrService.updateMenu(command)
-        render(status: HttpServletResponse.SC_OK, contentType: 'application/json') {
+        render(status: HttpServletResponse.SC_OK, contentType: CONTENT_TYPE_JSON) {
         }
     }
 
@@ -81,14 +81,14 @@ class MenuMgrController extends BaseController {
             return handleValidation(command)
         }
         menuMgrService.addButton(command)
-        render(status: HttpServletResponse.SC_OK, contentType: 'application/json') {
+        render(status: HttpServletResponse.SC_OK, contentType: CONTENT_TYPE_JSON) {
         }
     }
 
     def addButtons() {
         def menu = Menu.get(params.long('menuId'))
         menuMgrService.addButtons(menu.alias)
-        render(status: HttpServletResponse.SC_OK, contentType: 'application/json') {
+        render(status: HttpServletResponse.SC_OK, contentType: CONTENT_TYPE_JSON) {
         }
     }
 
@@ -97,7 +97,7 @@ class MenuMgrController extends BaseController {
             return handleValidation(command)
         }
         menuMgrService.updateButton(command)
-        render(status: HttpServletResponse.SC_OK, contentType: 'application/json') {
+        render(status: HttpServletResponse.SC_OK, contentType: CONTENT_TYPE_JSON) {
         }
     }
 

@@ -10,6 +10,9 @@ import org.springframework.security.core.context.SecurityContextHolder
 import javax.servlet.http.HttpServletResponse
 
 abstract class BaseController {
+
+    static final String CONTENT_TYPE_JSON = 'application/json'
+
     def baseService
 
     def getGridData(QueryResult<?> queryResult) {
@@ -56,7 +59,6 @@ abstract class BaseController {
         if (errorCode) {
             data.errorId = errorCode
         }
-
         render data as JSON
     }
 

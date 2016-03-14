@@ -9,7 +9,7 @@ class QueryResult<E> {
 
     private static final QueryResult<E> EMPTY = new QueryResult<>(0, Collections.emptyList())
 
-    public static final QueryResult<E> empty() {
+    static final QueryResult<E> emptyResult() {
         EMPTY
     }
 
