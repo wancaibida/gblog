@@ -206,7 +206,7 @@ ruleset {
     GrailsDuplicateMapping
     GrailsMassAssignment
     GrailsPublicControllerMethod
-    GrailsServletContextReference
+//    GrailsServletContextReference
     GrailsSessionReference   // DEPRECATED
     GrailsStatelessService
 
@@ -316,7 +316,7 @@ ruleset {
     // rulesets/security.xml
     FileCreateTempFile
     InsecureRandom
-    JavaIoPackageAccess
+//    JavaIoPackageAccess
     NonFinalPublicField
     NonFinalSubclassOfSensitiveInterface
     ObjectFinalize

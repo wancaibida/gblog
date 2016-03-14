@@ -49,7 +49,6 @@ class CategoryMgrController extends BaseController {
         render(status: HttpServletResponse.SC_NO_CONTENT)
     }
 
-
     def parents() {
         render categoryMgrService.listParentCategorys(params.long('categoryId')) as JSON
     }
