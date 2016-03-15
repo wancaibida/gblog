@@ -5,7 +5,7 @@ package me.w2x.blog.controller.front.other
  */
 class OtherController {
 
-    static layout = "postLayout"
+    static layout = 'postLayout'
 
     def about() {
         render(view: '/front/other/about')

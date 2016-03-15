@@ -9,6 +9,7 @@ class User implements Serializable {
 
     private static final long serialVersionUID = 1
 
+    @SuppressWarnings(['GrailsDomainWithServiceReference'])
     transient springSecurityService
 
     String username

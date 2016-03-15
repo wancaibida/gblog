@@ -1,5 +1,8 @@
 package me.w2x.blog.domain
 
+import groovy.transform.ToString
+
+@ToString
 class Post {
 
     String title

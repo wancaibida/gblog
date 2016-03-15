@@ -75,100 +75,100 @@ class BaseService {
 
     private translateGroup(Map filterGroup, Map params) {
         if (filterGroup == null) {
-            return " 1=1 ";
+            return " 1=1 "
         }
 
-        def op = filterGroup.op;
+        def op = filterGroup.op
 
-        StringBuilder where = new StringBuilder();
+        StringBuilder where = new StringBuilder()
 
-        boolean isStart = true;
-        where.append(GROUP_LEFT_TOKEN);
+        boolean isStart = true
+        where.append(GROUP_LEFT_TOKEN)
 
-        List<Map> rules = filterGroup.rules;
+        List<Map> rules = filterGroup.rules
         if (rules) {
             for (Map rule : rules) {
                 if (!isStart) {
-                    where.append(getOperatorText(op));
+                    where.append(getOperatorText(op))
                 }
 
-                where.append(translateRule(rule, params));
-                isStart = false;
+                where.append(translateRule(rule, params))
+                isStart = false
             }
         }
 
-        List<Map> groups = filterGroup.groups;
+        List<Map> groups = filterGroup.groups
         if (groups) {
             for (Map subGroup : groups) {
                 if (!isStart) {
-                    where.append(getOperatorText(op));
+                    where.append(getOperatorText(op))
                 }
 
-                where.append(translateGroup(subGroup, params));
-                isStart = false;
+                where.append(translateGroup(subGroup, params))
+                isStart = false
             }
         }
 
-        where.append(GROUP_RIGHT_TOKEN);
+        where.append(GROUP_RIGHT_TOKEN)
         if (isStart) {
-            return " 1=1 ";
+            return " 1=1 "
         }
 
-        return where.toString();
+        return where.toString()
 
     }
 
     private translateRule(Map filterRule, Map<String, Object> params) {
         if (filterRule == null) {
-            return " 1=1 ";
+            return " 1=1 "
         }
 
-        String field = filterRule.field;
-        String op = filterRule.op;
-        String type = filterRule.type;
-        String value = filterRule.value;
+        String field = filterRule.field
+        String op = filterRule.op
+        String type = filterRule.type
+        String value = filterRule.value
 
-        def builder = new StringBuilder();
+        def builder = new StringBuilder()
 
         if (StringUtils.contains(field, "_")) {
-            builder.append(StringUtils.replace(field, "_", "."));
+            builder.append(StringUtils.replace(field, "_", "."))
         } else {
-            builder.append(field);
+            builder.append(field)
         }
 
         //插入op
-        builder.append(getOperatorText(op));
+        builder.append(getOperatorText(op))
 
         switch (filterRule.op) {
             case 'like':
                 if (!StringUtils.startsWith(value, LIKE_TOKEN)) {
-                    value = LIKE_TOKEN + value;
+                    value = LIKE_TOKEN + value
                 }
 
                 if (!StringUtils.endsWith(value, LIKE_TOKEN)) {
-                    value = value + LIKE_TOKEN;
+                    value = value + LIKE_TOKEN
                 }
-                builder.append(PARAM_PREFIX_TOKEN).append(field);
+                builder.append(PARAM_PREFIX_TOKEN).append(field)
 
-                params.put(field, value);
-                break;
+                params.put(field, value)
+                break
 
             case 'endwith':
                 if (!StringUtils.startsWith(value, LIKE_TOKEN)) {
-                    value = LIKE_TOKEN + value;
+                    value = LIKE_TOKEN + value
                 }
-                builder.append(PARAM_PREFIX_TOKEN).append(field);
+                builder.append(PARAM_PREFIX_TOKEN).append(field)
 
-                params.put(field, value);
-                break;
+                params.put(field, value)
+                break
 
             case 'startwith':
                 if (!StringUtils.endsWith(value, LIKE_TOKEN)) {
-                    value = value + LIKE_TOKEN;
+                    value = value + LIKE_TOKEN
                 }
-                builder.append(PARAM_PREFIX_TOKEN).append(field);
-                params.put(field, value);
-                break;
+                builder.append(PARAM_PREFIX_TOKEN).append(field)
+                params.put(field, value)
+                break
 
             case 'equal':
             case 'notequal':
@@ -176,49 +176,49 @@ class BaseService {
             case 'greater':
             case 'lessorequal':
             case 'less':
-                builder.append(PARAM_PREFIX_TOKEN).append(field);
-                params.put(field, createParam(type, value));
-                break;
+                builder.append(PARAM_PREFIX_TOKEN).append(field)
+                params.put(field, createParam(type, value))
+                break
 
             case 'in':
             case 'notin':
-                String[] arr = StringUtils.split(value, ",");
-                builder.append(GROUP_LEFT_TOKEN);
-                builder.append(PARAM_PREFIX_TOKEN).append(field);
-                builder.append(GROUP_RIGHT_TOKEN);
+                String[] arr = StringUtils.split(value, ",")
+                builder.append(GROUP_LEFT_TOKEN)
+                builder.append(PARAM_PREFIX_TOKEN).append(field)
+                builder.append(GROUP_RIGHT_TOKEN)
 
-                List<Object> list = new ArrayList<Object>(arr.length);
+                List<Object> list = new ArrayList<Object>(arr.length)
 
                 for (String str : arr) {
-                    list.add(createParam(type, str));
+                    list.add(createParam(type, str))
                 }
 
-                params.put(field, list);
-                break;
+                params.put(field, list)
+                break
         }
 
-        return builder.toString();
+        return builder.toString()
     }
 
     private createParam(String type, String value) {
-        type = type.toLowerCase();
+        type = type.toLowerCase()
         if ("number".equals(type)) {
-            return NumberUtils.toLong(value);
+            return NumberUtils.toLong(value)
         }
 
         if ("int".equals(type)) {
-            return NumberUtils.toInt(value);
+            return NumberUtils.toInt(value)
         }
 
         if ("string".equals(type)) {
-            return value.toString();
+            return value.toString()
         }
 
-        return value;
+        return value
     }
 
     private static String getOperatorText(String op) {
-        def operator;
+        def operator
         switch (op) {
             case 'equal':
                 operator = '='

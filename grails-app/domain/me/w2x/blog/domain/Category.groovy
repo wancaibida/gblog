@@ -1,13 +1,13 @@
 package me.w2x.blog.domain
 
+import groovy.transform.ToString
 import me.w2x.blog.bean.Regex
 
+@ToString
 class Category {
-
     String name
     String alias
     Long parentId = 0L
-
 
     static constraints = {
         id nullable: true
@@ -35,6 +35,4 @@ class Category {
         alias column: 's_alias'
         parentId column: 'n_parent_id'
     }
-
-
 }

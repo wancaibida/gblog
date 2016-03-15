@@ -30,8 +30,12 @@ class UserRole implements Serializable {
     @Override
     int hashCode() {
         def builder = new HashCodeBuilder()
-        if (user) builder.append(user.id)
-        if (role) builder.append(role.id)
+        if (user) {
+            builder.append(user.id)
+        }
+        if (role) {
+            builder.append(role.id)
+        }
         builder.toHashCode()
     }
 
@@ -69,7 +73,9 @@ class UserRole implements Serializable {
     }
 
     static void removeAll(User u, boolean flush = false) {
-        if (u == null) return
+        if (u == null) {
+            return
+        }
 
         UserRole.where { user == u }.deleteAll()
 
@@ -79,7 +85,9 @@ class UserRole implements Serializable {
     }
 
     static void removeAll(Role r, boolean flush = false) {
-        if (r == null) return
+        if (r == null) {
+            return
+        }
 
         UserRole.where { role == r }.deleteAll()
 

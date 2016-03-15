@@ -1,12 +1,14 @@
 package me.w2x.blog.domain
 
+import groovy.transform.ToString
+
+@ToString
 class Button {
     String name
     Integer viewSort
     String icon
     String menuAlias
     String alias
-
 
     static constraints = {
     }

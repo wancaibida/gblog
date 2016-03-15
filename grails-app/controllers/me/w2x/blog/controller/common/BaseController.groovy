@@ -9,7 +9,7 @@ import org.springframework.security.core.context.SecurityContextHolder
 
 import javax.servlet.http.HttpServletResponse
 
-abstract class BaseController {
+class BaseController {
 
     static final String CONTENT_TYPE_JSON = 'application/json'
 
@@ -66,10 +66,8 @@ abstract class BaseController {
         SpringSecurityUtils.securityConfig
     }
 
-
-    def Authentication getAuthentication() {
+    Authentication getAuthentication() {
         SecurityContextHolder.context?.authentication
     }
-
 
 }

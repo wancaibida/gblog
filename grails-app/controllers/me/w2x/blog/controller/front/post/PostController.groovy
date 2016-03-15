@@ -8,7 +8,7 @@ import me.w2x.blog.domain.Post
 import javax.servlet.http.HttpServletResponse
 
 class PostController extends BaseController {
-    static layout = "postLayout"
+    static layout = 'postLayout'
 
     def postMgrService
 
@@ -18,6 +18,7 @@ class PostController extends BaseController {
         def (total, posts, pageCount) = postMgrService.getPosts(searchFilter)
         render(view: '/front/post/postList',
                 model: [
+                        total      : total,
                         posts      : posts,
                         pageCount  : pageCount,
                         recentPosts: recentPosts,
@@ -56,6 +57,6 @@ class PostController extends BaseController {
     }
 
     def getArchives() {
-        postMgrService.getArchives()
+        postMgrService.archives
     }
 }
