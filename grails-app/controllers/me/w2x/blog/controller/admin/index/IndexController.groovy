@@ -12,7 +12,7 @@ class IndexController {
     }
 
     def allMenus() {
-        def menus = Menu.list(sort: '_sort', order: 'asc')
+        def menus = Menu.list(sort: 'sortBy', order: 'asc')
         render menus as JSON
     }
 
