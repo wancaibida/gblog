@@ -20,32 +20,33 @@ class InitServiceImpl implements InitService {
 
     ServletContext servletContext
 
+    @SuppressWarnings('NestedForLoop')
     @Override
     def init() {
         if (!servletContext) {
             return
         }
 
-        def reflections = new Reflections("me.w2x.blog.enu")
-        def classes = reflections.getSubTypesOf(Dict.class)
+        def reflections = new Reflections('me.w2x.blog.enu')
+        def classes = reflections.getSubTypesOf(Dict)
         def dictMap = new CaseInsensitiveMap()
         for (def clazz : classes) {
-            def dict = new HashMap<String, String>()
-            dictMap.put(clazz.getSimpleName(), dict)
-            def enums = clazz.getEnumConstants()
+            def dict = [:]
+            dictMap.put(clazz.simpleName, dict)
+            def enums = clazz.enumConstants
             for (Object o : enums) {
                 def d = (Dict) o
-                dict.put(d.getKey(), d.getText())
+                dict.put(d.key, d.text)
             }
         }
 
         servletContext.setAttribute(Constant.DICT_MAP, dictMap)
         servletContext.setAttribute(Constant.DICT_MAP_JSON, JSON.toJSONString(dictMap))
 
-        def keyPair = RSAUtils.getKeyPair()
-        def publicKey = (RSAPublicKey) keyPair.getPublic()
-        servletContext.setAttribute(Constant.MODULUS, new String(Hex.encodeHex(publicKey.getModulus().toByteArray())))
-        servletContext.setAttribute(Constant.EXPONENT, new String(Hex.encodeHex(publicKey.getPublicExponent().toByteArray())))
+        def keyPair = RSAUtils.keyPair
+        def publicKey = (RSAPublicKey) keyPair.public
+        servletContext.setAttribute(Constant.MODULUS, new String(Hex.encodeHex(publicKey.modulus.toByteArray())))
+        servletContext.setAttribute(Constant.EXPONENT, new String(Hex.encodeHex(publicKey.publicExponent.toByteArray())))
     }
 
     @Override

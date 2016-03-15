@@ -44,14 +44,16 @@ class BaseController {
 
     def handleCommandException(CommandException exception) {
         def errors = exception.errors
-        renderResponse(HttpServletResponse.SC_BAD_REQUEST, message(code: errors[0]), null)
+        buildResponse(HttpServletResponse.SC_BAD_REQUEST, message(code: errors[0]), null)
     }
 
-    def renderResponse(statusCode, errorMessage) {
-        renderResponse(statusCode, errorMessage, null)
+    @SuppressWarnings('FactoryMethodName')
+    protected buildResponse(statusCode, errorMessage) {
+        buildResponse(statusCode, errorMessage, null)
     }
 
-    def renderResponse(statusCode, errorMessage, errorCode) {
+    @SuppressWarnings('FactoryMethodName')
+    protected buildResponse(statusCode, errorMessage, errorCode) {
         response.status = statusCode
         def data = [:]
         data.errorId = response.status

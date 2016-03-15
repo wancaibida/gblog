@@ -9,16 +9,17 @@ import org.hibernate.Query
 @Transactional
 class BaseService {
 
-    private static final String PARAM_PREFIX_TOKEN = ":"
-    private static final String GROUP_LEFT_TOKEN = "("
-    private static final String GROUP_RIGHT_TOKEN = ")"
-    private static final String LIKE_TOKEN = "%"
+    private static final String PARAM_PREFIX_TOKEN = ':'
+    private static final String GROUP_LEFT_TOKEN = '('
+    private static final String GROUP_RIGHT_TOKEN = ')'
+    private static final String LIKE_TOKEN = '%'
 
     def grailsApplication
 
     def sessionFactory
 
-    def getGridData(String _countHql, String _queryHql, String where, int page, int pageSize, String sort, String sortOrder) {
+    @SuppressWarnings('ParameterCount')
+    def getGridData(String paramCountHql, String paramQueryHql, String where, int page, int pageSize, String sort, String sortOrder) {
         def sufix = new StringBuilder(' where ')
         def filterGroup = [:]
         if (where) {
@@ -27,8 +28,8 @@ class BaseService {
         def paramMap = [:]
         sufix.append(translateGroup(filterGroup, paramMap))
 
-        def countHql = "${_countHql} ${sufix}"
-        def queryHql = "${_queryHql} ${sufix}"
+        def countHql = "${paramCountHql} ${sufix}"
+        def queryHql = "${paramQueryHql} ${sufix}"
 
         def session = sessionFactory.currentSession
         Query countQuery = session.createQuery(countHql)
@@ -57,7 +58,7 @@ class BaseService {
         [Total: total, Rows: list]
     }
 
-
+    @SuppressWarnings('ParameterCount')
     def getGridData(Class domainClass, String where, int page, int pageSize, String sort, String sortOrder) {
         def simpleName = domainClass.simpleName
 
@@ -67,7 +68,6 @@ class BaseService {
         getGridData(countHql, queryHql, where, page, pageSize, sort, sortOrder)
     }
 
-
     def getSelectData(String domainClassName, String idName, String textName) {
         def domainClass = grailsApplication.getDomainClass(domainClassName).clazz
         domainClass.executeQuery("SELECT ${idName} AS id,${textName} AS text FROM ${domainClass.simpleName}")
@@ -75,7 +75,7 @@ class BaseService {
 
     private translateGroup(Map filterGroup, Map params) {
         if (filterGroup == null) {
-            return " 1=1 "
+            return ' 1=1 '
         }
 
         def op = filterGroup.op
@@ -111,16 +111,15 @@ class BaseService {
 
         where.append(GROUP_RIGHT_TOKEN)
         if (isStart) {
-            return " 1=1 "
+            return ' 1=1 '
         }
 
-        return where.toString()
-
+        where.toString()
     }
 
     private translateRule(Map filterRule, Map<String, Object> params) {
         if (filterRule == null) {
-            return " 1=1 "
+            return ' 1=1 '
         }
 
         String field = filterRule.field
@@ -130,8 +129,8 @@ class BaseService {
 
         def builder = new StringBuilder()
 
-        if (StringUtils.contains(field, "_")) {
-            builder.append(StringUtils.replace(field, "_", "."))
+        if (StringUtils.contains(field, '_')) {
+            builder.append(StringUtils.replace(field, '_', '.'))
         } else {
             builder.append(field)
         }
@@ -182,7 +181,7 @@ class BaseService {
 
             case 'in':
             case 'notin':
-                String[] arr = StringUtils.split(value, ",")
+                String[] arr = StringUtils.split(value, ',')
                 builder.append(GROUP_LEFT_TOKEN)
                 builder.append(PARAM_PREFIX_TOKEN).append(field)
                 builder.append(GROUP_RIGHT_TOKEN)
@@ -197,24 +196,25 @@ class BaseService {
                 break
         }
 
-        return builder.toString()
+        builder.toString()
     }
 
-    private createParam(String type, String value) {
-        type = type.toLowerCase()
-        if ("number".equals(type)) {
+    @SuppressWarnings('FactoryMethodName')
+    static createParam(String paramType, String value) {
+        def type = paramType.toLowerCase()
+        if ('number' == type) {
             return NumberUtils.toLong(value)
         }
 
-        if ("int".equals(type)) {
+        if ('int' == type) {
             return NumberUtils.toInt(value)
         }
 
-        if ("string".equals(type)) {
+        if ('string' == type) {
             return value.toString()
         }
 
-        return value
+        value
     }
 
     private static String getOperatorText(String op) {

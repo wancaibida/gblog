@@ -12,10 +12,6 @@ class PostMgrService {
 
     def baseService
 
-    def serviceMethod() {
-
-    }
-
     def getPosts(PostFilter filter) {
         def countResult = getPosts(filter, true)
         def total = countResult[0] as Long
@@ -28,7 +24,6 @@ class PostMgrService {
 
         [total, listResult, pageCount]
     }
-
 
     def getPosts(PostFilter filter, boolean isCount) {
         Post.createCriteria().list {
@@ -90,7 +85,7 @@ class PostMgrService {
     }
 
     def update(PostCommand command) {
-        def category = Category.get(command.categoryId);
+        def category = Category.get(command.categoryId)
         def post = Post.get(command.id)
         post.with {
             title = command.title

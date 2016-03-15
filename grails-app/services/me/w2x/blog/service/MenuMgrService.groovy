@@ -1,21 +1,17 @@
 package me.w2x.blog.service
 
 import grails.transaction.Transactional
-import me.w2x.blog.domain.Button
-import me.w2x.blog.domain.Menu
 import me.w2x.blog.bean.MenuFilter
 import me.w2x.blog.bean.QueryResult
 import me.w2x.blog.command.ButtonCommand
 import me.w2x.blog.command.MenuCommand
+import me.w2x.blog.domain.Button
+import me.w2x.blog.domain.Menu
 
 @Transactional
 class MenuMgrService {
 
     def sessionFactory
-
-    def serviceMethod() {
-
-    }
 
     def getMenus(MenuFilter filter) {
         def result = Menu.createCriteria().list {
@@ -30,7 +26,6 @@ class MenuMgrService {
             if (filter.parentId) {
                 eq('parentId', filter.parentId)
             }
-
 
             setMaxResults filter.pageSize
             setFirstResult((filter.page - 1 > 0 ? filter.page : 0) * filter.pageSize)
@@ -66,7 +61,7 @@ class MenuMgrService {
             icon = menuCommand.icon
             url = menuCommand.url
             parentId = menuCommand.parentId
-            _sort = 0L
+            sortBy = 0L
         }
         menu.save(flush: true)
     }
@@ -91,7 +86,7 @@ class MenuMgrService {
         if (menuId) {
             def session = sessionFactory.currentSession
             def query = session.createSQLQuery(
-                    """
+                    '''
                     SELECT
                      ID,
                      s_name
@@ -126,17 +121,17 @@ class MenuMgrService {
                          ID
                        ) AS res
                      )
-                """
+                '''
             )
             query.setLong('id', menuId)
 
             return query.list().collect {
                 [id: it[0], text: it[1], value: it[0]]
             }
-        } else {
-            return Menu.list().collect {
-                [id: it.id, text: it.name, value: it.id]
-            }
+        }
+
+        Menu.list().collect {
+            [id: it.id, text: it.name, value: it.id]
         }
     }
 
@@ -152,7 +147,8 @@ class MenuMgrService {
         button.save()
     }
 
-    def addButtons(String _menuAlias) {
+    @SuppressWarnings('TrailingComma')
+    def addButtons(String menuAlias) {
         [
                 [alias: 'add', name: '增加', icon: 'add.gif', viewSort: 1],
                 [alias: 'modify', name: '修改', icon: 'modify.gif', viewSort: 2],
@@ -163,7 +159,7 @@ class MenuMgrService {
                 name = btn.name
                 alias = btn.alias
                 icon = btn.icon
-                menuAlias = _menuAlias
+                it.menuAlias = menuAlias
                 viewSort = btn.viewSort
             }
             button.save()
@@ -185,6 +181,4 @@ class MenuMgrService {
     def deleteButton(Button button) {
         button.delete()
     }
-
-
 }

@@ -8,7 +8,7 @@ class Menu {
     String alias
     String url
     String icon
-    Integer _sort
+    Integer sortBy
     Long parentId
 
     static mapping = {
@@ -18,7 +18,7 @@ class Menu {
         alias column: 's_alias'
         url column: 's_url'
         icon column: 's_icon'
-        _sort column: 'n_sort'
+        sortBy column: 'n_sort'
         parentId column: 'n_parent_id'
     }
 
@@ -36,7 +36,7 @@ class Menu {
         })
         url nullable: true
         icon blank: false
-        _sort nullable: true
+        sortBy nullable: true
         parentId nullable: false
     }
 }

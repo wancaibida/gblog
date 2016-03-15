@@ -18,6 +18,7 @@ class UserRole implements Serializable {
         role = r
     }
 
+    @SuppressWarnings('Instanceof')
     @Override
     boolean equals(other) {
         if (!(other instanceof UserRole)) {
@@ -54,6 +55,7 @@ class UserRole implements Serializable {
         }
     }
 
+    @SuppressWarnings('FactoryMethodName')
     static UserRole create(User user, Role role, boolean flush = false) {
         def instance = new UserRole(user: user, role: role)
         instance.save(flush: flush, insert: true)
@@ -61,7 +63,9 @@ class UserRole implements Serializable {
     }
 
     static boolean remove(User u, Role r, boolean flush = false) {
-        if (u == null || r == null) return false
+        if (u == null || r == null) {
+            return false
+        }
 
         int rowCount = UserRole.where { user == u && role == r }.deleteAll()
 
@@ -98,7 +102,9 @@ class UserRole implements Serializable {
 
     static constraints = {
         role validator: { Role r, UserRole ur ->
-            if (ur.user == null || ur.user.id == null) return
+            if (ur.user == null || ur.user.id == null) {
+                return
+            }
             boolean existing = false
             UserRole.withNewSession {
                 existing = UserRole.exists(ur.user.id, r.id)

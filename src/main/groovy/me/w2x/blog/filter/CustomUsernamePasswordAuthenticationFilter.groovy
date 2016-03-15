@@ -12,6 +12,6 @@ class CustomUsernamePasswordAuthenticationFilter extends GrailsUsernamePasswordA
     @Override
     protected String obtainPassword(HttpServletRequest request) {
         def password = super.obtainPassword(request)
-        return RSAUtils.decryptStringByJs(password)
+        RSAUtils.decryptStringByJs(password)
     }
 }

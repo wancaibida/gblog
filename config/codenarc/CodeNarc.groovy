@@ -167,7 +167,7 @@ ruleset {
     ClosureStatementOnOpeningLineOfMultipleLineClosure
     ConsecutiveBlankLines
     FileEndsWithoutNewline
-    LineLength
+//    LineLength
     MissingBlankLineAfterImports
     MissingBlankLineAfterPackage
     SpaceAfterCatch

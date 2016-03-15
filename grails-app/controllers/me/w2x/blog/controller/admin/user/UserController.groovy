@@ -25,7 +25,7 @@ class UserController extends BaseController {
 
     def authfail() {
         if (params.boolean('ajax')) {
-            renderResponse(HttpServletResponse.SC_BAD_REQUEST, message(code: 'user.password.not.correct'))
+            buildResponse(HttpServletResponse.SC_BAD_REQUEST, message(code: 'user.password.not.correct'))
         } else {
             redirect(action: 'auth')
         }
@@ -47,7 +47,7 @@ class UserController extends BaseController {
         def newPassword = RSAUtils.decryptStringByJs(rsaNewPassword)
 
         if (!newPassword) {
-            renderResponse(HttpServletResponse.SC_BAD_REQUEST, message(code: 'user.newpassword.not.null'))
+            buildResponse(HttpServletResponse.SC_BAD_REQUEST, message(code: 'user.newpassword.not.null'))
             return
         }
 
@@ -56,7 +56,7 @@ class UserController extends BaseController {
 
         def currentUser = User.get(userId)
         if (!currentUser) {
-            renderResponse(HttpServletResponse.SC_BAD_REQUEST, message(code: 'user.not.exist'))
+            buildResponse(HttpServletResponse.SC_BAD_REQUEST, message(code: 'user.not.exist'))
             return
         }
 
@@ -64,7 +64,7 @@ class UserController extends BaseController {
             passwordService.updatePassword(currentUser, newPassword)
             render(status: HttpServletResponse.SC_OK)
         } else {
-            return renderResponse(HttpServletResponse.SC_BAD_REQUEST, message(code: 'user.password.not.correct'))
+            return buildResponse(HttpServletResponse.SC_BAD_REQUEST, message(code: 'user.password.not.correct'))
         }
     }
 }

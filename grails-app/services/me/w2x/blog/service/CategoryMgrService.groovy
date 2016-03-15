@@ -1,18 +1,14 @@
 package me.w2x.blog.service
 
-import me.w2x.blog.domain.Category
-import me.w2x.blog.command.CategoryCommand
 import grails.transaction.Transactional
+import me.w2x.blog.command.CategoryCommand
+import me.w2x.blog.domain.Category
 import me.w2x.blog.exception.CommandException
 
 @Transactional
 class CategoryMgrService {
 
     def sessionFactory
-
-    def serviceMethod() {
-
-    }
 
     def addCategory(CategoryCommand command) {
         def category = new Category()
@@ -46,7 +42,7 @@ class CategoryMgrService {
         if (categoryId) {
             def session = sessionFactory.currentSession
             def query = session.createSQLQuery(
-                    """
+                    '''
                         SELECT
                          ID,
                          s_name
@@ -81,17 +77,17 @@ class CategoryMgrService {
                              ID
                            ) AS res
                          )
-                """
+                '''
             )
             query.setLong('id', categoryId)
 
             return query.list().collect {
                 [id: it[0], text: it[1], value: it[0]]
             }
-        } else {
-            return Category.list().collect {
-                [id: it.id, text: it.name, value: it.id]
-            }
+        }
+
+        Category.list().collect {
+            [id: it.id, text: it.name, value: it.id]
         }
     }
 
