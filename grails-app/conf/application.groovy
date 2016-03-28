@@ -117,7 +117,7 @@ environments {
     test {
         dataSource {
             dbCreate = "create-drop"
-            url = "jdbc: esql://127.0.0.1:5432/blog"
+            url = "jdbc:postgresql://127.0.0.1:5432/blog"
             driverClassName = "org.postgresql.Driver"
             dialect = "org.hibernate.dialect.PostgreSQLDialect"
             username = "blog"

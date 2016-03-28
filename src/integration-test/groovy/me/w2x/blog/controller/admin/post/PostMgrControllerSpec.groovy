@@ -11,7 +11,6 @@ import spock.lang.Specification
 import javax.servlet.http.HttpServletResponse
 
 @Integration
-@Rollback
 @TestFor(PostMgrController)
 class PostMgrControllerSpec extends Specification {
 

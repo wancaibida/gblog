@@ -1,10 +1,14 @@
 package me.w2x.blog.service
 
 import grails.transaction.Transactional
+import grails.util.Environment
+import grails.web.context.ServletContextHolder
 import groovy.json.JsonSlurper
 import org.apache.commons.lang3.StringUtils
 import org.apache.commons.lang3.math.NumberUtils
+import org.grails.web.util.GrailsApplicationAttributes
 import org.hibernate.Query
+import org.springframework.context.ApplicationContext
 
 @Transactional
 class BaseService {
@@ -272,4 +276,12 @@ class BaseService {
 
         " ${operator} "
     }
+//
+//    def getSessionFactory() {
+//        if (Environment.current == Environment.TEST) {
+//            ApplicationContext context = (ApplicationContext) ServletContextHolder.getServletContext().getAttribute(GrailsApplicationAttributes.APPLICATION_CONTEXT);
+//            sessionFactory = context.getBean('sessionFactory')
+//        }
+//        return sessionFactory
+//    }
 }
