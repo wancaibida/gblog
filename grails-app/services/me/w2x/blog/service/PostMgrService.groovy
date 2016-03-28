@@ -10,7 +10,7 @@ import org.joda.time.DateTime
 @Transactional
 class PostMgrService {
 
-    def baseService
+    BaseService baseService
 
     def getPosts(PostFilter filter) {
         def countResult = getPosts(filter, true)
