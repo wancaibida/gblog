@@ -203,11 +203,9 @@ grails:
               filterChain:
                   chainMap:
                       - pattern: '/admin/**'
-                        filters:
-                            - 'JOINED_FILTERS'
+                        filters: 'JOINED_FILTERS'
                       - pattern: '/**'
-                        filters:
-                            - 'none'
+                        filters: 'none'
               providerNames:
                   - 'rememberMeAuthenticationProvider'
                   - 'anonymousAuthenticationProvider'
