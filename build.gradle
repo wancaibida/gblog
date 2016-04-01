@@ -105,23 +105,13 @@ sourceSets {
 
 codenarc {
     configFile = file('config/codenarc/CodeNarcRuleSet.groovy')
+    maxPriority1Violations = 0
+    maxPriority2Violations = 0
+    maxPriority3Violations = 0
+    sourceSets = [project.sourceSets.main]
 }
 
 codenarcMain {
-    configFile = file('config/codenarc/CodeNarcRuleSet.groovy')
-    maxPriority1Violations = 0
-    maxPriority2Violations = 0
-    maxPriority3Violations = 0
-//    reports.html.enabled = true
     exclude "UrlMappings.groovy"
 }
 
-codenarcTest {
-    configFile = file('config/codenarc/CodeNarcRuleSet.groovy')
-    maxPriority1Violations = 0
-    maxPriority2Violations = 0
-    maxPriority3Violations = 0
-    ignoreFailures = false
-//    reportFormat = 'html'
-//    reportsDir = 'target/'
-}
