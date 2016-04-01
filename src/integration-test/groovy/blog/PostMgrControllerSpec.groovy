@@ -33,11 +33,30 @@ class PostMgrControllerSpec extends Specification {
         }
 
         when:
+        postCommand.validate()
         controller.add(postCommand)
 
         then:
         controller.response.status == HttpServletResponse.SC_OK
         Post.findByTitle('test post 000')
         Post.findByTitle('test post 000')?.status as String == PostStatus.PUBLISH.key
+    }
+
+    void "test add with error"() {
+        def postCommand = new PostCommand()
+        given:
+        controller.request.method = 'POST'
+        postCommand.with {
+            postStatus = PostStatus.PUBLISH.key
+            raw = 'raw text'
+            content = 'content text'
+        }
+
+        when:
+        postCommand.validate()
+        controller.add(postCommand)
+
+        then:
+        controller.response.status == HttpServletResponse.SC_BAD_REQUEST
     }
 }

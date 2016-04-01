@@ -44,7 +44,7 @@ class PostMgrController extends BaseController {
 
     def add(PostCommand command) {
         if (command.hasErrors()) {
-            handleValidation(command)
+            return handleValidation(command)
         }
 
         postMgrService.add(command)
@@ -54,7 +54,7 @@ class PostMgrController extends BaseController {
 
     def update(PostCommand command) {
         if (command.hasErrors()) {
-            handleValidation(command)
+            return handleValidation(command)
         }
 
         if (!Post.get(command.id)) {
