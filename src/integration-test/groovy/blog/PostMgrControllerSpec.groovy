@@ -20,12 +20,6 @@ class PostMgrControllerSpec extends Specification {
     @Autowired
     PostMgrController controller
 
-    def setup() {
-    }
-
-    def cleanup() {
-    }
-
     void "test add"() {
         def postCommand = new PostCommand()
         given:
