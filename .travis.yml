@@ -5,19 +5,14 @@ jdk:
 services:
   - postgresql
 
-postgres:
-  adapter: postgresql
-  database: blog
-  username: postgres
-
-before_script:
-  - "sudo -u postgres psql --file=init.sql"
-
 addons:
   apt:
     packages:
       - oracle-java8-installer
   postgresql: "9.4"
+
+before_script:
+  - "sudo -u postgres psql --file=init.sql"
 
 script:
   - ./gradlew check --stacktrace --info
