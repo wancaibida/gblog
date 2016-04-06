@@ -28,8 +28,8 @@ environments:
             url: 'jdbc:postgresql://127.0.0.1:5432/blog'
             driverClassName: 'org.postgresql.Driver'
             dialect: 'org.hibernate.dialect.PostgreSQLDialect'
-            username: "${testUser?:'blog'}"
-            password: "${testUser?'':'blog'}"
+            username: 'blog'
+            password: 'blog'
             logSql: true
     production:
         dataSource:
