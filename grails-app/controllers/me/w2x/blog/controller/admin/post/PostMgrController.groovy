@@ -5,12 +5,13 @@ import me.w2x.blog.command.PostCommand
 import me.w2x.blog.controller.common.BaseController
 import me.w2x.blog.domain.Category
 import me.w2x.blog.domain.Post
+import me.w2x.blog.service.PostMgrService
 
 import javax.servlet.http.HttpServletResponse
 
 class PostMgrController extends BaseController {
 
-    def postMgrService
+    PostMgrService postMgrService
 
     def index() {
         if (request.xhr) {
@@ -43,7 +44,7 @@ class PostMgrController extends BaseController {
 
     def add(PostCommand command) {
         if (command.hasErrors()) {
-            handleValidation(command)
+            return handleValidation(command)
         }
 
         postMgrService.add(command)
@@ -53,7 +54,7 @@ class PostMgrController extends BaseController {
 
     def update(PostCommand command) {
         if (command.hasErrors()) {
-            handleValidation(command)
+            return handleValidation(command)
         }
 
         if (!Post.get(command.id)) {

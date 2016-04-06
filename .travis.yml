@@ -1,5 +1,21 @@
 language: groovy
 jdk:
   - oraclejdk8
+
+services:
+  - postgresql
+
+addons:
+  apt:
+    packages:
+      - oracle-java8-installer
+  postgresql: "9.4"
+
+before_script:
+  - "sudo -u postgres psql --file=init.sql"
+
 script:
-  - ./gradlew check
+  - ./gradlew check --stacktrace --info
+
+after_failure:
+  - cat /home/travis/build/wancaibida/gblog/build/test-results/*.*
