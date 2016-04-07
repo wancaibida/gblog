@@ -65,6 +65,7 @@ dependencies {
     compile "org.reflections:reflections:0.9.10"
     compile "com.alibaba:fastjson:1.2.2"
     compile 'org.liquibase:liquibase-core:3.3.2'
+    compile 'org.grails.plugins:build-test-data:3.0.0'
 
 
 

@@ -1,5 +1,6 @@
 package blog
 
+import grails.buildtestdata.mixin.Build
 import grails.test.mixin.TestFor
 import grails.test.mixin.integration.Integration
 import grails.transaction.Rollback
@@ -14,6 +15,7 @@ import javax.servlet.http.HttpServletResponse
 
 @Integration
 @Rollback
+@Build(Post)
 @TestFor(PostMgrController)
 class PostMgrControllerSpec extends Specification {
 
@@ -58,5 +60,26 @@ class PostMgrControllerSpec extends Specification {
 
         then:
         controller.response.status == HttpServletResponse.SC_BAD_REQUEST
+    }
+
+    void "test update"() {
+        setup:
+        Post.build(title: 'post000', content: 'content000').save()
+
+        when:
+        PostCommand command = new PostCommand()
+        command.id = Post.findByTitle('post000')?.id
+        command.title = 'post001'
+        command.content = 'content001'
+        command.categoryId = 1L
+        command.postStatus = PostStatus.DRAFT.key
+        command.raw = 'content001'
+
+        command.validate()
+        controller.update(command)
+
+        then:
+        controller.response.status == HttpServletResponse.SC_OK
+        Post.findByTitle('post001')?.content == 'content001'
     }
 }
