@@ -1,14 +1,13 @@
 package me.w2x.blog
 
-
 import grails.test.mixin.integration.Integration
-import grails.transaction.*
+import grails.transaction.Rollback
 import me.w2x.blog.command.PostCommand
 import me.w2x.blog.domain.Post
 import me.w2x.blog.enu.PostStatus
 import me.w2x.blog.service.PostMgrService
 import org.springframework.beans.factory.annotation.Autowired
-import spock.lang.*
+import spock.lang.Specification
 
 @Integration
 @Rollback
@@ -27,7 +26,6 @@ class PostMgrServiceSpec extends Specification {
             categoryId = 1L
             postStatus = PostStatus.PUBLISH.key
         }
-
         when:
         postMgrService.add(command)
 
