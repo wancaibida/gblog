@@ -37,8 +37,8 @@ environments:
             url: 'jdbc:postgresql://127.0.0.1:5432/blog'
             driverClassName: 'org.postgresql.Driver'
             dialect: 'org.hibernate.dialect.PostgreSQLDialect'
-            username: 'blog'
-            password: 'blog'
+            username: "${JDBC_CONNECTION_USERNAME}"
+            password: "${JDBC_CONNECTION_PASSWORD}"
             logSql: false
             properties:
                 jmxEnabled: true

@@ -2,6 +2,7 @@ import grails.util.Environment
 import me.w2x.blog.domain.account.Role
 import me.w2x.blog.domain.account.User
 import me.w2x.blog.domain.account.UserRole
+import me.w2x.blog.util.PropertyUtils
 
 class BootStrap {
 
@@ -13,7 +14,7 @@ class BootStrap {
             if (Environment.current == Environment.DEVELOPMENT || Environment.current == Environment.TEST) {
                 password = 'test123'
             } else {
-                password = System.properties['password']
+                password = PropertyUtils.getProp('password')
             }
             assert password
             admin = new User(username: adminUsername, password: password).save()
