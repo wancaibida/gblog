@@ -38,7 +38,7 @@ $(function () {
         if (!jiconlist.attr("loaded")) {
             $.get(adminPath + 'menus/icons', {}, function (icons) {
                 $.each(icons, function (index, icon) {
-                    var src = basePath + 'static/icons/32X32/' + icon;
+                    var src = basePath + iconPath + icon;
                     jiconlist.append("<li><img src='" + src + "' raw='" + icon + "'/></li>");
                 });
                 jiconlist.attr("loaded", true);

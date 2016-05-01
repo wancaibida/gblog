@@ -96,8 +96,8 @@
     //预加载dialog的图片
     LG.prevDialogImage = function (rootPath) {
         rootPath = rootPath || "";
-        LG.prevLoadImage(basePath + 'static/ligerUI/skins/Aqua/images/win/', ['dialog-icons.gif']);
-        LG.prevLoadImage(basePath + 'static/ligerUI/skins/Gray/images/win/', ['dialogicon.gif']);
+        LG.prevLoadImage(basePath + dialogImgPrefix + 'Aqua/images/win/', ['dialog-icons.gif']);
+        LG.prevLoadImage(basePath + dialogImgPrefix + 'Gray/images/win/', ['dialogicon.gif']);
     };
 
     //提交服务器请求
@@ -505,7 +505,7 @@
                     items[items.length] = {
                         click: toolbarBtnItemClick,
                         text: o.name,
-                        img: basePath + "static/icons/32X32/" + o.icon,
+                        img: basePath + iconPath + o.icon,
                         id: o.alias
                     };
                     items[items.length] = {line: true};

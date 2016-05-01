@@ -5,7 +5,7 @@
     <title>用户登录</title>
     <g:include view="/admin/base.gsp"/>
 
-    <asset:stylesheet src="static/css/admin/login/login.css"/>
+    <asset:stylesheet src="css/admin/login/login.css"/>
     <asset:javascript src="js/admin/user/login.js"/>
     <asset:javascript src="js/common/security.js"/>
 

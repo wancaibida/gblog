@@ -114,7 +114,7 @@
 
 <script type="text/javascript">
     $(document).ready(function () {
-        SyntaxHighlighter.config.clipboardSwf = "${basePath}static/syntaxhighlighter/scripts/clipboard.swf";
+        SyntaxHighlighter.config.clipboardSwf = "${assetPath(src: 'syntaxhighlighter/scripts/clipboard.swf')}";
         SyntaxHighlighter.all();
     });
 </script>
