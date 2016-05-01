@@ -3,17 +3,14 @@
 <html>
 <head>
     <g:include view="/admin/base.gsp"/>
-    <script type="text/javascript"
-            src="${webRequest.baseUrl}/static/js/admin/post/postList.js"></script>
-    <script type="text/javascript">
-    </script>
+    <asset:javascript src="js/admin/post/postList.js"/>
     <title>文章管理</title>
 </head>
 
 <body>
 <div id="mainsearch" style="width: 98%">
     <div class="searchtitle">
-        <span>搜索</span><img src="${webRequest.baseUrl}/static/icons/32X32/searchtool.gif"/>
+        <span>搜索</span><asset:image src="icons/32X32/searchtool.gif"/>
 
         <div class="togglebtn"></div>
     </div>

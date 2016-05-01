@@ -3,10 +3,8 @@
 <html>
 <head>
     <g:include view="/admin/base.gsp"/>
-    <script type="text/javascript"
-            src="${webRequest.baseUrl}/static/js/admin/sys/buttonList.js"></script>
-    <script type="text/javascript"
-            src="${webRequest.baseUrl}/static/js/common/iconselector.js"></script>
+    <asset:javascript src="js/admin/sys/buttonList.js"/>
+    <asset:javascript src="js/common/iconselector.js"/>
     <title>按钮管理</title>
 </head>
 

@@ -4,11 +4,11 @@
 <head>
     <title>用户登录</title>
     <g:include view="/admin/base.gsp"/>
-    <link type="text/css" rel="stylesheet"
-          href="${webRequest.baseUrl}/static/css/admin/login/login.css"/>
-    <script type="text/javascript"
-            src="${webRequest.baseUrl}/static/js/admin/user/login.js"></script>
-    <script type="text/javascript" src="${webRequest.baseUrl}/static/js/common/security.js"></script>
+
+    <asset:stylesheet src="css/admin/login/login.css"/>
+    <asset:javascript src="js/admin/user/login.js"/>
+    <asset:javascript src="js/common/security.js"/>
+
     <script type="text/javascript">
         var modulus = '${application.modulus}';
         var exponent = '${application.exponent}';

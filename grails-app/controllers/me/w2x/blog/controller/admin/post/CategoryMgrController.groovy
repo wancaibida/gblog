@@ -25,7 +25,7 @@ class CategoryMgrController extends BaseController {
         }
         def category = categoryMgrService.addCategory(command)
         render(status: HttpServletResponse.SC_OK, contentType: CONTENT_TYPE_JSON) {
-            id = category.id
+            id category.id
         }
     }
 

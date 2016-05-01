@@ -9,9 +9,10 @@
 <head>
     <meta charset="utf-8"/>
     <title>Simple example - Editor.md examples</title>
-    <link rel="stylesheet" href="<%=basePath%>static/editor.md/style.css"/>
-    <link rel="stylesheet" href="<%=basePath%>static/editor.md/css/editormd.min.css"/>
-    <script type="text/javascript" src="<%=basePath%>static/json2/json2.js"></script>
+    <asset:stylesheet src="editor.md/style.css"/>
+    <asset:stylesheet src="editor.md/css/editormd.min.css"/>
+    <asset:javascript src="json2/json2.js"/>
+
     <script type="text/javascript">
         var basePath = "<%=basePath%>";
         var adminPath = basePath + "admin/";
@@ -49,9 +50,10 @@
         </div>
     </form>
 </div>
-<script type="text/javascript" src="<%=basePath%>static/jQuery/jquery-1.11.3.js"></script>
-<script src="<%=basePath%>static/editor.md/editormd.min.js"></script>
-<script src="<%=basePath%>static/js/admin/post/postView.js"></script>
+
+<asset:javascript src="jQuery/jquery-1.11.3.js"/>
+<asset:javascript src="editor.md/editormd.min.js"/>
+<asset:javascript src="js/admin/post/postView.js"/>
 
 </body>
 </html>
