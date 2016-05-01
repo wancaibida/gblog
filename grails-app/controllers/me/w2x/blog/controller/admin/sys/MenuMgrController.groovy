@@ -19,7 +19,7 @@ class MenuMgrController extends BaseController {
         if (!allIcons) {
             synchronized (MenuMgrController) {
                 if (!allIcons) {
-                    def iconPath = servletContext.getRealPath('/') + '/WEB-INF/classes/static/icons/32X32/'
+                    def iconPath = servletContext.getRealPath('/') + '/assets/icons/32X32/'
                     new File(iconPath).listFiles()?.each {
                         allIcons << it.name
                     }
