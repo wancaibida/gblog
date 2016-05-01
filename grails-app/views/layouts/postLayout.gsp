@@ -111,6 +111,7 @@
 <asset:javascript src="syntaxhighlighter/scripts/brush.js"/>
 <asset:stylesheet src="syntaxhighlighter/styles/shCore.css"/>
 <asset:stylesheet src="syntaxhighlighter/styles/shThemeDefault.css"/>
+
 <script type="text/javascript">
     $(document).ready(function () {
         SyntaxHighlighter.config.clipboardSwf = "${basePath}static/syntaxhighlighter/scripts/clipboard.swf";

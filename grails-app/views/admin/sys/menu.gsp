@@ -3,12 +3,9 @@
 <html>
 <head>
     <g:include view="/admin/base.gsp"/>
-    <script type="text/javascript"
-            src="${webRequest.baseUrl}/static/js/admin/sys/menuList.js"></script>
-    <script type="text/javascript"
-            src="${webRequest.baseUrl}/static/js/common/common.js"></script>
-    <script type="text/javascript"
-            src="${webRequest.baseUrl}/static/js/common/iconselector.js"></script>
+    <asset:javascript src="js/admin/sys/menuList.js"/>
+    <asset:javascript src="js/common/common.js"/>
+    <asset:javascript src="js/common/iconselector.js"/>
     <title>菜单管理</title>
 </head>
 
