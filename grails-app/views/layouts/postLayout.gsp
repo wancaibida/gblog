@@ -13,18 +13,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- css -->
-    <link rel="stylesheet" href="${basePath}static/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="${basePath}static/css/front/index/css/ionicons.min.css">
-    <link rel="stylesheet" href="${basePath}static/css/front/index/css/pace.css">
-    <link rel="stylesheet" href="${basePath}static/css/front/index/css/custom.css">
+    <asset:stylesheet src="bootstrap/css/bootstrap.min.css"/>
+    <asset:stylesheet src="css/front/index/css/ionicons.min.css"/>
+    <asset:stylesheet src="css/front/index/css/pace.css"/>
+    <asset:stylesheet src="css/front/index/css/custom.css"/>
 
     <!-- js -->
-    <script src="${basePath}static/jQuery/jquery-2.1.3.min.js"></script>
-    <script src="${basePath}static/bootstrap/js/bootstrap.min.js"></script>
-    <script src="${basePath}static/js/front/index/pace.min.js"></script>
-    <script src="${basePath}static/js/front/index/modernizr.custom.js"></script>
-
+    <asset:javascript src="jQuery/jquery-2.1.3.min.js"/>
+    <asset:javascript src="bootstrap/js/bootstrap.min.js"/>
+    <asset:javascript src="js/front/index/pace.min.js"/>
+    <asset:javascript src="js/front/index/modernizr.custom.js"/>
 </head>
 
 
@@ -108,12 +106,11 @@
     </nav>
 </div>
 
-<script src="${basePath}static/js/front/index/script.js"></script>
-<script src="${basePath}static/syntaxhighlighter/scripts/brush.js" type="text/javascript"></script>
-<link href="${basePath}static/syntaxhighlighter/styles/shCore.css" type="text/css"
-      rel="stylesheet"/>
-<link href="${basePath}static/syntaxhighlighter/styles/shThemeDefault.css" type="text/css"
-      rel="stylesheet"/>
+
+<asset:javascript src="js/front/index/script.js"/>
+<asset:javascript src="syntaxhighlighter/scripts/brush.js"/>
+<asset:stylesheet src="syntaxhighlighter/styles/shCore.css"/>
+<asset:stylesheet src="syntaxhighlighter/styles/shThemeDefault.css"/>
 <script type="text/javascript">
     $(document).ready(function () {
         SyntaxHighlighter.config.clipboardSwf = "${basePath}static/syntaxhighlighter/scripts/clipboard.swf";
