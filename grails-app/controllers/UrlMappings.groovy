@@ -35,7 +35,6 @@ class UrlMappings {
             "/menus/parents"(controller: "menuMgr") {
                 action = [GET: 'parents']
             }
-            "/menus/icons"(controller: "menuMgr", action: "icons", method: "GET")
             "/menus/${menuId}/buttons"(controller: "menuMgr") {
                 action = [GET: 'buttons', POST: 'addButton']
             }
