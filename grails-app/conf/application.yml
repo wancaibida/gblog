@@ -32,9 +32,6 @@ environments:
             password: 'blog'
             logSql: true
     production:
-        grails:
-            assets:
-                url: "${CDN_URL}"
         dataSource:
             dbCreate: 'none'
             url: 'jdbc:postgresql://127.0.0.1:5432/blog'
@@ -141,87 +138,122 @@ grails:
     gorm:
         failOnError: true
     plugin:
-          databasemigration:
-              updateOnStart: true
-              changelogLocation: 'grails-app/migrations'
-              updateOnStartFileNames:
-                  - 'changelog.groovy'
-              dropOnStart: true
-          springsecurity:
-              auth:
-                  loginFormUrl: '/admin/login/auth'
-                  ajaxLoginFormUrl: '/admin/login/auth?ajax=true'
-              apf:
-                  filterProcessesUrl: '/admin/login/authenticate'
-                  usernameParameter: 'username'
-                  passwordParameter: 'password'
-              logout:
-                  filterProcessesUrl: '/admin/login/logoff'
-                  postOnly: false
-              password:
-                  algorithm: 'bcrypt'
-                  bcrypt:
-                      logrounds: 15
-              failureHandler:
-                  ajaxAuthFailUrl: '/admin/login/authfail?ajax=true'
-              successHandler:
-                  ajaxSuccessUrl: '/admin/login/authsuccess?ajax=true'
-              rejectIfNoRule: true
-              fii:
-                  rejectPublicInvocations: false
-              userLookup:
-                  userDomainClassName: 'me.w2x.blog.domain.account.User'
-                  authorityJoinClassName: 'me.w2x.blog.domain.account.UserRole'
-              authority:
-                  className: 'me.w2x.blog.domain.account.Role'
-              securityConfigType: "InterceptUrlMap"
-              interceptUrlMap:
-                  - pattern: '/assets/**'
-                    access:
-                        - 'permitAll'
-                  - pattern: '/static/**'
-                    access:
-                        - 'permitAll'
-                  - pattern: '/**/js/**'
-                    access:
-                        - 'permitAll'
-                  - pattern: '/**/css/**'
-                    access:
-                        - 'permitAll'
-                  - pattern: '/**/images/**'
-                    access:
-                        - 'permitAll'
-                  - pattern: '/**/favicon.ico'
-                    access:
-                        - 'permitAll'
-                  - pattern: '/admin/login/**'
-                    access:
-                        - 'permitAll'
-                  - pattern: '/admin/**'
-                    access:
-                        - 'ROLE_ADMIN'
-                  - pattern: '/**'
-                    access:
-                        - 'permitAll'
-              filterChain:
-                  chainMap:
-                      - pattern: '/admin/**'
-                        filters: 'JOINED_FILTERS'
-                      - pattern: '/**'
-                        filters: 'none'
-              providerNames:
-                  - 'rememberMeAuthenticationProvider'
-                  - 'anonymousAuthenticationProvider'
-                  - 'daoAuthenticationProvider'
-              rememberMe:
-                  alwaysRemember: false
-                  persistent: true
-                  persistentToken:
-                      domainClassName: 'me.w2x.blog.domain.Session'
+        databasemigration:
+            updateOnStart: true
+            changelogLocation: 'grails-app/migrations'
+            updateOnStartFileNames:
+                - 'changelog.groovy'
+            dropOnStart: true
+        springsecurity:
+            auth:
+                loginFormUrl: '/admin/login/auth'
+                ajaxLoginFormUrl: '/admin/login/auth?ajax=true'
+            apf:
+                filterProcessesUrl: '/admin/login/authenticate'
+                usernameParameter: 'username'
+                passwordParameter: 'password'
+            logout:
+                filterProcessesUrl: '/admin/login/logoff'
+                postOnly: false
+            password:
+                algorithm: 'bcrypt'
+                bcrypt:
+                    logrounds: 15
+            failureHandler:
+                ajaxAuthFailUrl: '/admin/login/authfail?ajax=true'
+            successHandler:
+                ajaxSuccessUrl: '/admin/login/authsuccess?ajax=true'
+            rejectIfNoRule: true
+            fii:
+                rejectPublicInvocations: false
+            userLookup:
+                userDomainClassName: 'me.w2x.blog.domain.account.User'
+                authorityJoinClassName: 'me.w2x.blog.domain.account.UserRole'
+            authority:
+                className: 'me.w2x.blog.domain.account.Role'
+            securityConfigType: "InterceptUrlMap"
+            interceptUrlMap:
+                - pattern: '/assets/**'
+                  access:
+                      - 'permitAll'
+                - pattern: '/static/**'
+                  access:
+                      - 'permitAll'
+                - pattern: '/**/js/**'
+                  access:
+                      - 'permitAll'
+                - pattern: '/**/css/**'
+                  access:
+                      - 'permitAll'
+                - pattern: '/**/images/**'
+                  access:
+                      - 'permitAll'
+                - pattern: '/**/favicon.ico'
+                  access:
+                      - 'permitAll'
+                - pattern: '/admin/login/**'
+                  access:
+                      - 'permitAll'
+                - pattern: '/admin/**'
+                  access:
+                      - 'ROLE_ADMIN'
+                - pattern: '/**'
+                  access:
+                      - 'permitAll'
+            filterChain:
+                chainMap:
+                    - pattern: '/admin/**'
+                      filters: 'JOINED_FILTERS'
+                    - pattern: '/**'
+                      filters: 'none'
+            providerNames:
+                - 'rememberMeAuthenticationProvider'
+                - 'anonymousAuthenticationProvider'
+                - 'daoAuthenticationProvider'
+            rememberMe:
+                alwaysRemember: false
+                persistent: true
+                persistentToken:
+                    domainClassName: 'me.w2x.blog.domain.Session'
 
 endpoints:
     jmx:
         unique-names: true
+
+---
+
+environments:
+    production:
+        grails:
+            assets:
+                url: "${CDN_URL}"
+            plugin:
+                databasemigration:
+                    updateOnStart: true
+                    changelogLocation: 'grails-app/migrations'
+                    updateOnStartFileNames:
+                        - 'changelog.groovy'
+                    dropOnStart: false
+    development:
+        grails:
+            plugin:
+                databasemigration:
+                    updateOnStart: true
+                    changelogLocation: 'grails-app/migrations'
+                    updateOnStartFileNames:
+                        - 'changelog.groovy'
+                    dropOnStart: true
+    text:
+        grails:
+            plugin:
+                databasemigration:
+                    updateOnStart: true
+                    changelogLocation: 'grails-app/migrations'
+                    updateOnStartFileNames:
+                        - 'changelog.groovy'
+                    dropOnStart: true
+
+
 
 my:
     project:
