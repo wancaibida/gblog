@@ -40,7 +40,7 @@ $(function () {
 
         if (!jiconlist.attr("loaded")) {
             $.each(icons, function (index, icon) {
-                var src = basePath + iconPath + icon;
+                var src = assetPath + 'icons/32X32/' + icon;
                 jiconlist.append("<li><img src='" + src + "' raw='" + icon + "'/></li>");
             });
             jiconlist.attr("loaded", true);

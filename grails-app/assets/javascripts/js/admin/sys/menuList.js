@@ -12,7 +12,7 @@ $(function () {
         onBeforeAppend: function (a, list) {
             list.push({id: 0, name: '所有菜单', parentId: -1, alias: 'root', icon: 'world.gif'});
             $.each(list, function (index, item) {
-                item.icon = basePath + iconPath + item.icon;
+                item.icon = assetPath + 'icons/32X32/' + item.icon;
             })
         },
         onClick: function (obj) {
@@ -72,7 +72,7 @@ $(function () {
                 name: "icon",
                 type: "text",
                 render: function (a, b, val) {
-                    return "<img src=" + basePath + iconPath + val + ">";
+                    return "<img src=" + assetPath + "icons/32X32/" + val + ">";
                 }
             }
         ],

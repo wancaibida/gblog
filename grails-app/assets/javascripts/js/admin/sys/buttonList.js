@@ -25,7 +25,7 @@ $(function () {
                 name: "icon",
                 type: "text",
                 render: function (a, b, val) {
-                    return "<img src=" + basePath + iconPath + val + ">";
+                    return "<img src=" + assetPath + "icons/32X32/" + val + ">";
                 }
             }
         ],
@@ -90,7 +90,7 @@ $(function () {
         items[items.length] = {
             click: toolbarClick,
             text: o.name,
-            img: basePath + iconPath + o.icon,
+            img: assetPath + 'icons/32X32/' + o.icon,
             id: o.alias
         };
         items[items.length] = {line: true};

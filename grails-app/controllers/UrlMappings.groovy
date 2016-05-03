@@ -86,13 +86,9 @@ class UrlMappings {
             action = [GET: 'index']
         }
 
-        "/about"(controller: 'other') {
-            action = [GET: 'about']
-        }
+        "/about"(controller: 'other', method: 'GET', action: 'about')
 
-        "/contact"(controller: 'other') {
-            action = [GET: 'contact']
-        }
+        "/contact"(controller: 'other', method: 'GET', action: 'contact')
 
         "/$controller/$action?/$id?(.$format)?" {
             constraints {

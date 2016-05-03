@@ -80,7 +80,7 @@ $(function () {
                         url: adminPath + submenu.url,
                         alias: submenu.alias
                     });
-                    $("img", subitem).attr("src", basePath + iconPath + submenu.icon);
+                    $("img", subitem).attr("src", assetPath + 'icons/32X32/' + submenu.icon);
                     $("span", subitem).html(submenu.name || submenu.text);
 
                     $("ul:first", item).append(subitem);

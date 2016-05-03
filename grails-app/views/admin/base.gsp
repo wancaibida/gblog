@@ -25,6 +25,7 @@
     var adminPath = basePath + "admin/";
     var dictMap = '${application.dictMapJson}';
     window.JSON = JSON2;
+    var assetPath = "${assetPath(src: '')}";
     var iconPath = "${assetPath(src: 'icons/32X32/')}";
     var dialogImgPrefix = "${assetPath(src: 'ligerUI/skins/')}";
 </script>

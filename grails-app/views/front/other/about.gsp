@@ -1,11 +1,12 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: chengang
-  Date: 2/3/16
-  Time: 8:40 PM
---%>
-
 <%@ page contentType="text/html;charset=UTF-8" %>
+
+<html>
+
+<head>
+    <title></title>
+</head>
+
+<body>
 <div class="container">
     <div class="row">
         <main class="col-md-12">
@@ -18,3 +19,5 @@
         </main>
     </div>
 </div>
+</body>
+</html>

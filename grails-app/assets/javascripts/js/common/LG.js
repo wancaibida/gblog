@@ -505,7 +505,7 @@
                     items[items.length] = {
                         click: toolbarBtnItemClick,
                         text: o.name,
-                        img: basePath + iconPath + o.icon,
+                        img: assetPath + 'icons/32X32/' + o.icon,
                         id: o.alias
                     };
                     items[items.length] = {line: true};

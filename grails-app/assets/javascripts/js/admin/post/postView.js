@@ -5,7 +5,7 @@ $(function () {
         width: "90%",
         height: 640,
         syncScrolling: "single",
-        path: basePath + "static/editor.md/lib/",
+        path: assetPath + "editor.md/lib/",
         saveHTMLToTextarea: true
     });
 

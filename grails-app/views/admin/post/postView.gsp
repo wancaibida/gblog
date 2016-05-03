@@ -19,6 +19,7 @@
         var dictMap = '${application.dictMapJson}';
         window.JSON = JSON2;
         var postId = '${params.postId}';
+        var assetPath = "${assetPath(src: '')}";
     </script>
 </head>
 
