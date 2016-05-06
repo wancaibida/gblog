@@ -3,7 +3,7 @@
 	<head>
 		<title><g:if env="development">Grails Runtime Exception</g:if><g:else>Error</g:else></title>
 		<meta name="layout" content="main">
-		<g:if env="development"><asset:stylesheet src="errors.css?v=${me.w2x.blog.bean.Constant.SYSTEM_STARTUP_TIME}"/></g:if>
+		<g:if env="development"><asset:stylesheet src="errors.css"/></g:if>
 	</head>
 	<body>
 		<g:if env="development">

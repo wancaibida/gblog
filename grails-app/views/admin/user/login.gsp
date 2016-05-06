@@ -5,9 +5,9 @@
     <title>用户登录</title>
     <g:include view="/admin/base.gsp"/>
 
-    <asset:stylesheet src="css/admin/login/login.css?v=${me.w2x.blog.bean.Constant.SYSTEM_STARTUP_TIME}"/>
-    <asset:javascript src="js/admin/user/login.js?v=${me.w2x.blog.bean.Constant.SYSTEM_STARTUP_TIME}"/>
-    <asset:javascript src="js/common/security.js?v=${me.w2x.blog.bean.Constant.SYSTEM_STARTUP_TIME}"/>
+    <asset:stylesheet src="css/admin/login/login.css"/>
+    <asset:javascript src="js/admin/user/login.js"/>
+    <asset:javascript src="js/common/security.js"/>
 
     <script type="text/javascript">
         var modulus = '${application.modulus}';

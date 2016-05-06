@@ -9,9 +9,9 @@
 <head>
     <meta charset="utf-8"/>
     <title>Simple example - Editor.md examples</title>
-    <asset:stylesheet src="editor.md/style.css?v=${me.w2x.blog.bean.Constant.SYSTEM_STARTUP_TIME}"/>
-    <asset:stylesheet src="editor.md/css/editormd.min.css?v=${me.w2x.blog.bean.Constant.SYSTEM_STARTUP_TIME}"/>
-    <asset:javascript src="json2/json2.js?v=${me.w2x.blog.bean.Constant.SYSTEM_STARTUP_TIME}"/>
+    <asset:stylesheet src="editor.md/style.css"/>
+    <asset:stylesheet src="editor.md/css/editormd.min.css"/>
+    <asset:javascript src="json2/json2.js"/>
 
     <script type="text/javascript">
         var basePath = "<%=basePath%>";
@@ -52,9 +52,9 @@
     </form>
 </div>
 
-<asset:javascript src="jQuery/jquery-1.11.3.js?v=${me.w2x.blog.bean.Constant.SYSTEM_STARTUP_TIME}"/>
-<asset:javascript src="editor.md/editormd.min.js?v=${me.w2x.blog.bean.Constant.SYSTEM_STARTUP_TIME}"/>
-<asset:javascript src="js/admin/post/postView.js?v=${me.w2x.blog.bean.Constant.SYSTEM_STARTUP_TIME}"/>
+<asset:javascript src="jQuery/jquery-1.11.3.js"/>
+<asset:javascript src="editor.md/editormd.min.js"/>
+<asset:javascript src="js/admin/post/postView.js"/>
 
 </body>
 </html>

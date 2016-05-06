@@ -3,8 +3,8 @@
 <html>
 <head>
     <g:include view="/admin/base.gsp"/>
-    <asset:javascript src="js/admin/sys/buttonList.js?v=${me.w2x.blog.bean.Constant.SYSTEM_STARTUP_TIME}"/>
-    <asset:javascript src="js/common/iconselector.js?v=${me.w2x.blog.bean.Constant.SYSTEM_STARTUP_TIME}"/>
+    <asset:javascript src="js/admin/sys/buttonList.js"/>
+    <asset:javascript src="js/common/iconselector.js"/>
     <title>按钮管理</title>
 </head>
 
