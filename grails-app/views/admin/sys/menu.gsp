@@ -3,9 +3,9 @@
 <html>
 <head>
     <g:include view="/admin/base.gsp"/>
-    <asset:javascript src="js/admin/sys/menuList.js"/>
-    <asset:javascript src="js/common/common.js"/>
-    <asset:javascript src="js/common/iconselector.js"/>
+    <asset:javascript src="js/admin/sys/menuList.js?v=${me.w2x.blog.bean.Constant.SYSTEM_STARTUP_TIME}"/>
+    <asset:javascript src="js/common/common.js?v=${me.w2x.blog.bean.Constant.SYSTEM_STARTUP_TIME}"/>
+    <asset:javascript src="js/common/iconselector.js?v=${me.w2x.blog.bean.Constant.SYSTEM_STARTUP_TIME}"/>
     <title>菜单管理</title>
 </head>
 

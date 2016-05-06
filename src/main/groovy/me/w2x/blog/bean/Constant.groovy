@@ -22,4 +22,6 @@ class Constant {
     public static final String MODULUS = 'modulus'
 
     public static final String EXPONENT = 'exponent'
+
+    public static final long SYSTEM_STARTUP_TIME = System.currentTimeMillis()
 }

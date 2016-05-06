@@ -227,6 +227,8 @@ environments:
         grails:
             assets:
                 url: "${CDN_URL}"
+                minifyJs: true
+                minifyCss: true
             plugin:
                 databasemigration:
                     updateOnStart: true

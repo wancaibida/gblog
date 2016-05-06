@@ -4,21 +4,21 @@
     String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path + "/";
 %>
 
-<asset:stylesheet src="ligerUI/skins/Aqua/css/ligerui-all.css"/>
-<asset:stylesheet src="ligerUI/skins/Gray/css/all.css"/>
-<asset:stylesheet src="ligerUI/skins/ligerui-icons.css"/>
+<asset:stylesheet src="ligerUI/skins/Aqua/css/ligerui-all.css?v=${me.w2x.blog.bean.Constant.SYSTEM_STARTUP_TIME}"/>
+<asset:stylesheet src="ligerUI/skins/Gray/css/all.css?v=${me.w2x.blog.bean.Constant.SYSTEM_STARTUP_TIME}"/>
+<asset:stylesheet src="ligerUI/skins/ligerui-icons.css?v=${me.w2x.blog.bean.Constant.SYSTEM_STARTUP_TIME}"/>
 
-<asset:stylesheet src="css/common.css"/>
-<asset:stylesheet src="css/index.css"/>
+<asset:stylesheet src="css/common.css?v=${me.w2x.blog.bean.Constant.SYSTEM_STARTUP_TIME}"/>
+<asset:stylesheet src="css/index.css?v=${me.w2x.blog.bean.Constant.SYSTEM_STARTUP_TIME}"/>
 
-<asset:javascript src="jQuery/jquery-1.11.3.js"/>
-<asset:javascript src="json2/json2.js"/>
-<asset:javascript src="ligerUI/js/core/base.js"/>
-<asset:javascript src="ligerUI/js/ligerui.all.js"/>
-<asset:javascript src="js/common/LG.js"/>
-<asset:javascript src="jquery-validation/jquery.validate.min.js"/>
-<asset:javascript src="jquery-validation/jquery.metadata.js"/>
-<asset:javascript src="jquery-validation/messages_cn.js"/>
+<asset:javascript src="jQuery/jquery-1.11.3.js?v=${me.w2x.blog.bean.Constant.SYSTEM_STARTUP_TIME}"/>
+<asset:javascript src="json2/json2.js?v=${me.w2x.blog.bean.Constant.SYSTEM_STARTUP_TIME}"/>
+<asset:javascript src="ligerUI/js/core/base.js?v=${me.w2x.blog.bean.Constant.SYSTEM_STARTUP_TIME}"/>
+<asset:javascript src="ligerUI/js/ligerui.all.js?v=${me.w2x.blog.bean.Constant.SYSTEM_STARTUP_TIME}"/>
+<asset:javascript src="js/common/LG.js?v=${me.w2x.blog.bean.Constant.SYSTEM_STARTUP_TIME}"/>
+<asset:javascript src="jquery-validation/jquery.validate.min.js?v=${me.w2x.blog.bean.Constant.SYSTEM_STARTUP_TIME}"/>
+<asset:javascript src="jquery-validation/jquery.metadata.js?v=${me.w2x.blog.bean.Constant.SYSTEM_STARTUP_TIME}"/>
+<asset:javascript src="jquery-validation/messages_cn.js?v=${me.w2x.blog.bean.Constant.SYSTEM_STARTUP_TIME}"/>
 
 <script type="text/javascript">
     var basePath = "<%=basePath%>";

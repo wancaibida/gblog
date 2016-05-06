@@ -13,16 +13,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <asset:stylesheet src="bootstrap/css/bootstrap.min.css"/>
-    <asset:stylesheet src="css/front/index/css/ionicons.min.css"/>
-    <asset:stylesheet src="css/front/index/css/pace.css"/>
-    <asset:stylesheet src="css/front/index/css/custom.css"/>
+    <asset:stylesheet src="bootstrap/css/bootstrap.min.css?v=${me.w2x.blog.bean.Constant.SYSTEM_STARTUP_TIME}"/>
+    <asset:stylesheet src="css/front/index/css/ionicons.min.css?v=${me.w2x.blog.bean.Constant.SYSTEM_STARTUP_TIME}"/>
+    <asset:stylesheet src="css/front/index/css/pace.css?v=${me.w2x.blog.bean.Constant.SYSTEM_STARTUP_TIME}"/>
+    <asset:stylesheet src="css/front/index/css/custom.css?v=${me.w2x.blog.bean.Constant.SYSTEM_STARTUP_TIME}"/>
 
     <!-- js -->
-    <asset:javascript src="jQuery/jquery-2.1.3.min.js"/>
-    <asset:javascript src="bootstrap/js/bootstrap.min.js"/>
-    <asset:javascript src="js/front/index/pace.min.js"/>
-    <asset:javascript src="js/front/index/modernizr.custom.js"/>
+    <asset:javascript src="jQuery/jquery-2.1.3.min.js?v=${me.w2x.blog.bean.Constant.SYSTEM_STARTUP_TIME}"/>
+    <asset:javascript src="bootstrap/js/bootstrap.min.js?v=${me.w2x.blog.bean.Constant.SYSTEM_STARTUP_TIME}"/>
+    <asset:javascript src="js/front/index/pace.min.js?v=${me.w2x.blog.bean.Constant.SYSTEM_STARTUP_TIME}"/>
+    <asset:javascript src="js/front/index/modernizr.custom.js?v=${me.w2x.blog.bean.Constant.SYSTEM_STARTUP_TIME}"/>
 </head>
 
 
@@ -106,10 +106,10 @@
 </div>
 
 
-<asset:javascript src="js/front/index/script.js"/>
-<asset:javascript src="syntaxhighlighter/scripts/brush.js"/>
-<asset:stylesheet src="syntaxhighlighter/styles/shCore.css"/>
-<asset:stylesheet src="syntaxhighlighter/styles/shThemeDefault.css"/>
+<asset:javascript src="js/front/index/script.js?v=${me.w2x.blog.bean.Constant.SYSTEM_STARTUP_TIME}"/>
+<asset:javascript src="syntaxhighlighter/scripts/brush.js?v=${me.w2x.blog.bean.Constant.SYSTEM_STARTUP_TIME}"/>
+<asset:stylesheet src="syntaxhighlighter/styles/shCore.css?v=${me.w2x.blog.bean.Constant.SYSTEM_STARTUP_TIME}"/>
+<asset:stylesheet src="syntaxhighlighter/styles/shThemeDefault.css?v=${me.w2x.blog.bean.Constant.SYSTEM_STARTUP_TIME}"/>
 
 <script type="text/javascript">
     $(document).ready(function () {

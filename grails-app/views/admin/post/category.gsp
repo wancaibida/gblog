@@ -3,7 +3,7 @@
 <html>
 <head>
     <g:include view="/admin/base.gsp"/>
-    <asset:javascript src="js/admin/post/categoryList.js"/>
+    <asset:javascript src="js/admin/post/categoryList.js?v=${me.w2x.blog.bean.Constant.SYSTEM_STARTUP_TIME}"/>
 
     <title>分类管理</title>
 </head>
