@@ -15,7 +15,7 @@ class CategoryCommand implements Validateable {
 
     static constraints = {
         id nullable: true
-        parentId nullable: false
+        parentId nullable: true
         name blank: false
         alias(blank: false, validator: { val, obj ->
             if (!Regex.ALPHA_NUMERIC.matcher(val).matches()) {

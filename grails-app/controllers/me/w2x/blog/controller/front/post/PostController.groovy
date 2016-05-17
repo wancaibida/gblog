@@ -14,7 +14,10 @@ class PostController extends BaseController {
 
     def categoryMgrService
 
+    def databaseBackupService
+
     def index() {
+        databaseBackupService.backup()
         def (total, posts, pageCount) = postMgrService.getPosts(searchFilter)
         render(view: '/front/post/postList',
                 model: [
