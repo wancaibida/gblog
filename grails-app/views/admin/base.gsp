@@ -23,7 +23,7 @@
 <script type="text/javascript">
     var basePath = "<%=basePath%>";
     var adminPath = basePath + "admin/";
-    var dictMap = '${application.dictMapJson}';
+    var dictMap = ${raw(application.dictMapJson)};
     window.JSON = JSON2;
     var assetPath = "${assetPath(src: '')}";
     var iconPath = "${assetPath(src: 'icons/32X32/')}";

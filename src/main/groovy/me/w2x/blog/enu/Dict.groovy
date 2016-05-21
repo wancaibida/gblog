@@ -6,7 +6,7 @@ package me.w2x.blog.enu
  */
 interface Dict {
 
-    String getKey()
+    Integer getKey()
 
     String getText()
 }

@@ -1,10 +1,9 @@
 package me.w2x.blog.service.impl
 
-import com.alibaba.fastjson.JSON
-import me.w2x.blog.util.RSAUtils
-import me.w2x.blog.enu.Dict
 import me.w2x.blog.bean.Constant
+import me.w2x.blog.enu.Dict
 import me.w2x.blog.service.InitService
+import me.w2x.blog.util.RSAUtils
 import org.apache.commons.codec.binary.Hex
 import org.apache.commons.collections.map.CaseInsensitiveMap
 import org.reflections.Reflections
@@ -41,7 +40,7 @@ class InitServiceImpl implements InitService {
         }
 
         servletContext.setAttribute(Constant.DICT_MAP, dictMap)
-        servletContext.setAttribute(Constant.DICT_MAP_JSON, JSON.toJSONString(dictMap))
+        servletContext.setAttribute(Constant.DICT_MAP_JSON, dictMap as grails.converters.JSON)
 
         def keyPair = RSAUtils.keyPair
         def publicKey = (RSAPublicKey) keyPair.public

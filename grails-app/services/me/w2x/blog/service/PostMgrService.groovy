@@ -1,10 +1,11 @@
 package me.w2x.blog.service
 
-import me.w2x.blog.domain.Category
 import grails.transaction.Transactional
-import me.w2x.blog.domain.Post
 import me.w2x.blog.bean.PostFilter
 import me.w2x.blog.command.PostCommand
+import me.w2x.blog.domain.Category
+import me.w2x.blog.domain.Post
+import me.w2x.blog.enu.PostStatus
 import org.joda.time.DateTime
 
 @Transactional
@@ -27,6 +28,8 @@ class PostMgrService {
 
     def getPosts(PostFilter filter, boolean isCount) {
         Post.createCriteria().list {
+            eq('status', PostStatus.PUBLISH.key)
+
             if (filter.category) {
                 eq('category', filter.category)
             }

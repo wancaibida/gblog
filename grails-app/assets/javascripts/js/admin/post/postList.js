@@ -21,6 +21,14 @@ $(function () {
                 }
             },
             {
+                display: "状态",
+                name: "status",
+                type: "text",
+                render: function (item, index, val) {
+                    return window.dictMap['poststatus'][val];
+                }
+            },
+            {
                 display: "评论数",
                 name: "commentCount",
                 type: "text"

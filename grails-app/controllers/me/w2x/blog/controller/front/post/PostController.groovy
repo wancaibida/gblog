@@ -4,6 +4,7 @@ import me.w2x.blog.bean.PostFilter
 import me.w2x.blog.controller.common.BaseController
 import me.w2x.blog.domain.Category
 import me.w2x.blog.domain.Post
+import me.w2x.blog.enu.PostStatus
 
 import javax.servlet.http.HttpServletResponse
 
@@ -29,7 +30,7 @@ class PostController extends BaseController {
 
     def view() {
         def post = Post.get(params.long('postId'))
-        if (!post) {
+        if (!post || post.status != PostStatus.PUBLISH.key) {
             return render(status: HttpServletResponse.SC_NOT_FOUND)
         }
 

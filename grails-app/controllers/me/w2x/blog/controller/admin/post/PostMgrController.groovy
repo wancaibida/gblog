@@ -47,8 +47,9 @@ class PostMgrController extends BaseController {
             return handleValidation(command)
         }
 
-        postMgrService.add(command)
+        def post = postMgrService.add(command)
         render(status: HttpServletResponse.SC_OK, contentType: CONTENT_TYPE_JSON) {
+            id post.id
         }
     }
 
