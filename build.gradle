@@ -66,8 +66,7 @@ dependencies {
     compile "com.alibaba:fastjson:1.2.2"
     compile 'org.liquibase:liquibase-core:3.3.2'
     compile 'org.grails.plugins:build-test-data:3.0.0'
-
-
+    compile group: 'com.qiniu', name: 'qiniu-java-sdk', version: '7.1.0'
 
     console "org.grails:grails-console"
 

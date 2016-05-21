@@ -261,6 +261,10 @@ my:
     project:
         name: 'w2x'
         domain: 'w2x.me'
+        accessKey: "${ACCESS_KEY}"
+        secretKey: "${SECRET_KEY}"
+        bucketname: "${BUCKETNAME}"
+        dumpPath: "${DUMP_PATH}"
 
 
 sequence:
