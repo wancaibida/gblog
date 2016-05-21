@@ -14,7 +14,7 @@ class BootStrap {
             if (Environment.current == Environment.DEVELOPMENT || Environment.current == Environment.TEST) {
                 password = 'test123'
             } else {
-                password = PropertyUtils.getProp('password')
+                password = PropertyUtils.getProp('ADMIN_INITIAL_PASSWORD')
             }
             assert password
             admin = new User(username: adminUsername, password: password).save()

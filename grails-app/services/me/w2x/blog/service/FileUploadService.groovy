@@ -2,7 +2,6 @@ package me.w2x.blog.service
 
 import com.qiniu.storage.UploadManager
 import com.qiniu.util.Auth
-import org.apache.commons.io.FileUtils
 import org.apache.commons.io.FilenameUtils
 
 /**
@@ -13,7 +12,7 @@ class FileUploadService {
     def grailsApplication
 
     @Lazy
-    final String bucketname = grailsApplication.config.my.project.bucketname
+    String bucketname = grailsApplication.config.my.project.bucketname
 
     @Lazy
     Auth auth = Auth.create(grailsApplication.config.my.project.accessKey, grailsApplication.config.my.project.secretKey);

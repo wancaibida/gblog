@@ -4,6 +4,7 @@ import me.w2x.blog.bean.PostFilter
 import me.w2x.blog.controller.common.BaseController
 import me.w2x.blog.domain.Category
 import me.w2x.blog.domain.Post
+import me.w2x.blog.jobs.UploadBackupJob
 
 import javax.servlet.http.HttpServletResponse
 
@@ -14,10 +15,7 @@ class PostController extends BaseController {
 
     def categoryMgrService
 
-    def databaseBackupService
-
     def index() {
-        databaseBackupService.backup()
         def (total, posts, pageCount) = postMgrService.getPosts(searchFilter)
         render(view: '/front/post/postList',
                 model: [
