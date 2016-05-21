@@ -18,5 +18,5 @@
 ###How to startup
 export GRAILS_OPTS=&quot;-Dfile.encoding=UTF-8&quot;
 
-./grailsw clean
-./grailsw prod run-app
+./gradlew clean
+./gradlew -Dgrails.env=prod bootRun
