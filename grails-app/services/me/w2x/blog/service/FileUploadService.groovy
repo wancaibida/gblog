@@ -11,12 +11,6 @@ class FileUploadService {
 
     def grailsApplication
 
-    @Lazy
-    String bucketname = grailsApplication.config.my.project.bucketname
-
-    @Lazy
-    Auth auth = Auth.create(grailsApplication.config.my.project.accessKey, grailsApplication.config.my.project.secretKey);
-
     void upload(String filePath) {
         String fileName = FilenameUtils.getName(filePath)
         new UploadManager().put(filePath, fileName, getUpToken(bucketname))
@@ -26,4 +20,11 @@ class FileUploadService {
         auth.uploadToken(bucketname)
     }
 
+    Auth getAuth() {
+        Auth.create(grailsApplication.config.my.project.accessKey, grailsApplication.config.my.project.secretKey)
+    }
+
+    String getBucketname() {
+        grailsApplication.config.my.project.bucketname
+    }
 }

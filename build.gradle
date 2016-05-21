@@ -44,7 +44,7 @@ dependencyManagement {
 }
 
 dependencies {
-    codenarc group: 'org.codenarc', name: 'CodeNarc', version: '0.25.1'
+    codenarc group: 'org.codenarc', name: 'CodeNarc', version: '0.25.2'
 
     compile "org.springframework.boot:spring-boot-starter-logging"
     compile "org.springframework.boot:spring-boot-autoconfigure"

@@ -11,19 +11,19 @@ class UploadBackupJob {
     GrailsApplication grailsApplication
 
     static triggers = {
-        cron name: 'myTrigger', cronExpression: "0 0 2 * * ?"
+        cron name: 'myTrigger', cronExpression: '0 0 2 * * ?'
     }
 
-    def description = "Upload backup job with Cron Trigger"
+    def description = 'Upload backup job with Cron Trigger'
 
     void execute() {
         log.info('Upload dump files start')
         String dumpPath = grailsApplication.config.my.project.dumpPath
         if (dumpPath && new File(dumpPath).exists()) {
             new File(dumpPath).listFiles().each {
-                fileUploadService.upload(it.getAbsolutePath())
+                fileUploadService.upload(it.absolutePath())
                 FileUtils.deleteQuietly(it)
-                log.info("File ${it.getAbsolutePath()} upload successful!")
+                log.info("File ${it.absolutePath} upload successful!")
             }
         }
         log.info('Upload dump files end')
