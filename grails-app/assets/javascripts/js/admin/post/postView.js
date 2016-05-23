@@ -25,12 +25,13 @@ $(function () {
                 saveOrUpdate(
                     data,
                     function (result) {
-                        $("#id").val(result.id);
+                        if (result.id) {
+                            $("#id").val(result.id);
+                        }
                         isBusy = false;
                     },
-                    function (data) {
-                        var json = data['responseJSON'];
-                        console.log(json.errorMessage);
+                    function (error) {
+                        console.log(error);
                         isBusy = false;
                     });
             }

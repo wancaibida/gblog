@@ -63,8 +63,9 @@ class PostMgrController extends BaseController {
             return
         }
 
-        postMgrService.update(command)
+        def post = postMgrService.update(command)
         render(status: HttpServletResponse.SC_OK, contentType: CONTENT_TYPE_JSON) {
+            id post.id
         }
     }
 

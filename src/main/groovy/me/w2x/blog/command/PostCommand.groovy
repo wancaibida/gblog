@@ -11,7 +11,7 @@ class PostCommand implements Validateable {
     Long id
     String title
     Long categoryId
-    String postStatus
+    Integer postStatus
     String raw
     String content
 
