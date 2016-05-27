@@ -107,7 +107,7 @@ class PostMgrService {
     }
 
     def getExcerpt(String content) {
-        return StringUtils
-                .substring(content.replaceAll("<.*?>", "").replaceAll(" ", "").replaceAll("<.*?", ""), 0, 200);
+        StringUtils
+                .substring(content.replaceAll('<.*?>', '').replaceAll(' ', '').replaceAll('<.*?', ''), 0, 200)
     }
 }
