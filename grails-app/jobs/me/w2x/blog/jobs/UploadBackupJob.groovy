@@ -21,7 +21,7 @@ class UploadBackupJob {
         String dumpPath = grailsApplication.config.my.project.dumpPath
         if (dumpPath && new File(dumpPath).exists()) {
             new File(dumpPath).listFiles().each {
-                fileUploadService.upload(it.absolutePath())
+                fileUploadService.upload(it.absolutePath)
                 FileUtils.deleteQuietly(it)
                 log.info("File ${it.absolutePath} upload successful!")
             }
