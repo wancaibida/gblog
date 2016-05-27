@@ -14,6 +14,7 @@ class PostCommand implements Validateable {
     Integer postStatus
     String raw
     String content
+    String excerpt
 
     static constraints = {
         id nullable: true
@@ -24,5 +25,6 @@ class PostCommand implements Validateable {
         postStatus inList: [PostStatus.DRAFT.key, PostStatus.PENDING.key, PostStatus.PUBLISH.key]
         content blank: false
         raw blank: true
+        excerpt nullable: true
     }
 }

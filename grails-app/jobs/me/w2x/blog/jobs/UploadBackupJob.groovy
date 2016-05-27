@@ -22,6 +22,7 @@ class UploadBackupJob {
         if (dumpPath && new File(dumpPath).exists()) {
             new File(dumpPath).listFiles().each {
                 fileUploadService.upload(it.absolutePath)
+                log.info("file ${it.absolutePath} uploaded!")
                 FileUtils.deleteQuietly(it)
                 log.info("File ${it.absolutePath} upload successful!")
             }

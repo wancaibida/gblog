@@ -6,6 +6,7 @@ import me.w2x.blog.command.PostCommand
 import me.w2x.blog.domain.Category
 import me.w2x.blog.domain.Post
 import me.w2x.blog.enu.PostStatus
+import org.apache.commons.lang3.StringUtils
 import org.joda.time.DateTime
 
 @Transactional
@@ -77,7 +78,7 @@ class PostMgrService {
         def post = new Post()
         post.with {
             title = command.title
-            excerpt = command.title
+            excerpt = command.excerpt ?: getExcerpt(command.content)
             raw = command.raw
             content = command.content
             status = command.postStatus as Integer
@@ -92,7 +93,7 @@ class PostMgrService {
         def post = Post.get(command.id)
         post.with {
             title = command.title
-            excerpt = command.title
+            excerpt = command.excerpt ?: getExcerpt(command.content)
             raw = command.raw
             content = command.content
             status = command.postStatus as Integer
@@ -103,5 +104,10 @@ class PostMgrService {
 
     def delete(Post post) {
         post.delete()
+    }
+
+    def getExcerpt(String content) {
+        return StringUtils
+                .substring(content.replaceAll("<.*?>", "").replaceAll(" ", "").replaceAll("<.*?", ""), 0, 200);
     }
 }

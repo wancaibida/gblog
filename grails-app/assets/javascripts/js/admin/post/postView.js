@@ -17,6 +17,7 @@ $(function () {
                 var data = {};
                 data.id = $("#id").val();
                 data.title = $('#title').val();
+                data.excerpt = $("#excerpt").val();
                 data.categoryId = $('#categoryId').val();
                 data.postStatus = 0;
                 data.content = this.getHTML();
@@ -46,6 +47,7 @@ $(function () {
         data.postStatus = $('#postStatus').val();
         data.content = testEditor.getHTML();
         data.raw = testEditor.getMarkdown();
+        data.excerpt = $("#excerpt").val();
 
         saveOrUpdate(
             data,

@@ -244,7 +244,7 @@ environments:
                     changelogLocation: 'grails-app/migrations'
                     updateOnStartFileNames:
                         - 'changelog.groovy'
-                    dropOnStart: true
+                    dropOnStart: false
     text:
         grails:
             plugin:

@@ -39,7 +39,10 @@
             状态:
             <g:select name="postStatus" from="${application.dictMap['postStatus']}"
                       value="${post?.status ?: 2}" optionKey="key" optionValue="value"/>
-
+            <br>
+            摘要:
+            <textarea style="width: 90%;height: 100px" name="excerpt"
+                      id="excerpt">${post?.excerpt}</textarea>
         </div>
 
         <div id="test-editormd">
