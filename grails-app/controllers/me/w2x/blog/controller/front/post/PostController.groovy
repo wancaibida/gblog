@@ -37,7 +37,7 @@ class PostController extends BaseController {
         render(view: '/front/post/postView', model: [post: post])
     }
 
-    def getSearchFilter() {
+    private getSearchFilter() {
         def filter = new PostFilter()
         filter.with {
             page = params.int('page', 1)
@@ -49,15 +49,15 @@ class PostController extends BaseController {
         filter
     }
 
-    def getRecentPosts() {
+    private getRecentPosts() {
         postMgrService.getRecentPosts(6)
     }
 
-    def getCategorys() {
+    private getCategorys() {
         categoryMgrService.allCategorys()
     }
 
-    def getArchives() {
+    private getArchives() {
         postMgrService.archives
     }
 }

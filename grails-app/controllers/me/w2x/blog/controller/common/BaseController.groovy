@@ -15,11 +15,11 @@ class BaseController {
 
     def baseService
 
-    def getGridData(QueryResult<?> queryResult) {
+    protected getGridData(QueryResult<?> queryResult) {
         [Total: queryResult.total, Rows: queryResult.data]
     }
 
-    def getGrid(Class domainClass) {
+    protected getGrid(Class domainClass) {
         def rawWhere = params.where as String
         def page = params.int('page', 1)
         def pageSize = params.int('pagesize', 10)
@@ -29,7 +29,7 @@ class BaseController {
         baseService.getGridData(domainClass, rawWhere, page, pageSize, sort, sortOrder)
     }
 
-    def handleValidation(command) {
+    protected handleValidation(command) {
         def errors = []
         command.errors.allErrors.each {
             def field = it.field
@@ -42,7 +42,7 @@ class BaseController {
         throw new CommandException(errors)
     }
 
-    def handleCommandException(CommandException exception) {
+    protected handleCommandException(CommandException exception) {
         def errors = exception.errors
         buildResponse(HttpServletResponse.SC_BAD_REQUEST, message(code: errors[0]), null)
     }
@@ -68,7 +68,7 @@ class BaseController {
         SpringSecurityUtils.securityConfig
     }
 
-    Authentication getAuthentication() {
+    protected Authentication getAuthentication() {
         SecurityContextHolder.context?.authentication
     }
 

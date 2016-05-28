@@ -54,7 +54,11 @@ class PostMgrService {
     }
 
     def getRecentPosts(Integer count) {
-        Post.listOrderByDateCreated([max: count])
+        Post.withCriteria {
+            'eq'('status', PostStatus.PUBLISH.key)
+            maxResults count
+            order('dateCreated', 'desc')
+        }
     }
 
     def getArchives() {
