@@ -8,7 +8,7 @@
 <html lang="zh">
 <head>
     <meta charset="utf-8"/>
-    <title>Simple example - Editor.md examples</title>
+    <title>文章管理</title>
     <asset:stylesheet src="editor.md/style.css"/>
     <asset:stylesheet src="editor.md/css/editormd.min.css"/>
     <asset:javascript src="json2/json2.js"/>
