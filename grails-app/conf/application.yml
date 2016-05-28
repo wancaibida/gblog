@@ -25,7 +25,7 @@ environments:
     test:
         dataSource:
             dbCreate: create-drop
-            url: 'jdbc:postgresql://127.0.0.1:5432/blog'
+            url: 'jdbc:postgresql://127.0.0.1:5432/blog_test'
             driverClassName: 'org.postgresql.Driver'
             dialect: 'org.hibernate.dialect.PostgreSQLDialect'
             username: 'blog'
@@ -244,7 +244,7 @@ environments:
                     changelogLocation: 'grails-app/migrations'
                     updateOnStartFileNames:
                         - 'changelog.groovy'
-                    dropOnStart: true
+                    dropOnStart: false
     text:
         grails:
             plugin:
