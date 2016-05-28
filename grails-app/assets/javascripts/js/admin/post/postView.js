@@ -16,7 +16,7 @@ $(function () {
                 isBusy = true;
                 var data = {};
                 data.id = $("#id").val();
-                data.title = $('#title').val();
+                data.title = $('#title').val() || 'draft';
                 data.excerpt = $("#excerpt").val();
                 data.categoryId = $('#categoryId').val();
                 data.postStatus = 0;
