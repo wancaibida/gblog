@@ -6,7 +6,8 @@
 <html>
 
 <head>
-    <title></title>
+    <title>${post.title}</title>
+    <meta name="description" content="${post.excerpt}">
 </head>
 
 

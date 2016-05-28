@@ -7,12 +7,12 @@
 <html>
 
 <head>
-    <title>${grailsApplication.config.my.project.domain}</title>
+    <title><g:layoutTitle/></title>
 
     <!-- meta -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
+    <g:layoutHead/>
     <asset:stylesheet src="bootstrap/css/bootstrap.min.css"/>
     <asset:stylesheet src="css/front/index/css/ionicons.min.css"/>
     <asset:stylesheet src="css/front/index/css/pace.css"/>
@@ -85,7 +85,8 @@
             <div class="col-md-12">
                 <p class="copyright">&copy; 2016 ${grailsApplication.config.my.project.domain}
                 &nbsp;本站由<a href="http://www.vultr.com/?ref=6831370">vultr</a>提供
-                    <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1258928017'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s11.cnzz.com/z_stat.php%3Fid%3D1258928017%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));</script>
+                    <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+                    document.write(unescape("%3Cspan id='cnzz_stat_icon_1258928017'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s11.cnzz.com/z_stat.php%3Fid%3D1258928017%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));</script>
                 </p>
             </div>
         </div>
@@ -119,10 +120,17 @@
 </script>
 
 <script>
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    (function (i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r;
+        i[r] = i[r] || function () {
+                    (i[r].q = i[r].q || []).push(arguments)
+                }, i[r].l = 1 * new Date();
+        a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0];
+        a.async = 1;
+        a.src = g;
+        m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
 
     ga('create', 'UA-77440077-1', 'auto');
     ga('send', 'pageview');

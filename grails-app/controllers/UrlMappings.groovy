@@ -5,6 +5,9 @@ class UrlMappings {
         "/"(controller: "post") {
             action = [GET: 'index']
         }
+
+        "/sitemap.xml"(controller: 'sitemap', action: 'index', method: 'GET')
+
         "404"(view: '/front/error/404')
         "500"(view: '/front/error/500')
 
