@@ -1,23 +1,31 @@
-import grails.util.BuildSettings
 import grails.util.Environment
+import me.w2x.blog.util.PropertyUtils
 
 // See http://logback.qos.ch/manual/groovy.html for details on configuration
-appender('STDOUT', ConsoleAppender) {
+appender('CONSOLE', ConsoleAppender) {
     encoder(PatternLayoutEncoder) {
         pattern = "%level %logger - %msg%n"
     }
 }
 
-root(INFO, ['STDOUT'])
-
-def targetDir = BuildSettings.TARGET_DIR
-if (Environment.isDevelopmentMode() && targetDir) {
-    appender("FULL_STACKTRACE", FileAppender) {
-        file = "${targetDir}/stacktrace.log"
-        append = true
-        encoder(PatternLayoutEncoder) {
-            pattern = "%level %logger - %msg%n"
-        }
+appender("FILE", RollingFileAppender) {
+    encoder(PatternLayoutEncoder) {
+        Pattern = "%d %level %thread %mdc %logger - %m%n"
     }
-    logger("StackTrace", INFO, ['FULL_STACKTRACE'], false)
+    rollingPolicy(TimeBasedRollingPolicy) {
+        FileNamePattern = "/${PropertyUtils.getProp('LOG_PATH') ?: 'tmp'}/blog_%d{yyyy_MM_dd}.log"
+    }
+}
+
+switch (Environment.current) {
+    case [Environment.DEVELOPMENT, Environment.TEST]:
+        root(INFO, ['CONSOLE'])
+        logger("StackTrace", INFO, ['CONSOLE'], false)
+        break
+    case Environment.PRODUCTION:
+        root(ERROR, ['FILE'])
+        break
+    default:
+        root(INFO, ['CONSOLE'])
+        break
 }
