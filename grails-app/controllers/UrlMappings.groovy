@@ -1,5 +1,6 @@
 class UrlMappings {
 
+    //TODO change format
     static mappings = {
 
         "/"(controller: "post", action: 'index', method: 'GET')
@@ -64,6 +65,8 @@ class UrlMappings {
             "/posts/view"(controller: "postMgr") {
                 action = [GET: 'view']
             }
+
+            "/drafts"(controller: "postMgr", action: 'saveDraft', method: 'post')
 
             "/password/reset"(controller: 'user') {
                 action = [POST: 'updatePassword']

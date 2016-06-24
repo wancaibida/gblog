@@ -24,7 +24,7 @@ environments:
             logSql: true
     test:
         dataSource:
-            dbCreate: create-drop
+            dbCreate: 'create-drop'
             url: 'jdbc:postgresql://127.0.0.1:5432/blog_test'
             driverClassName: 'org.postgresql.Driver'
             dialect: 'org.hibernate.dialect.PostgreSQLDialect'
@@ -245,16 +245,6 @@ environments:
                     updateOnStartFileNames:
                         - 'changelog.groovy'
                     dropOnStart: false
-    text:
-        grails:
-            plugin:
-                databasemigration:
-                    updateOnStart: true
-                    changelogLocation: 'grails-app/migrations'
-                    updateOnStartFileNames:
-                        - 'changelog.groovy'
-                    dropOnStart: true
-
 
 
 my:

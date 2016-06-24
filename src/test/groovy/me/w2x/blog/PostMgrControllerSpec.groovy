@@ -7,6 +7,7 @@ import grails.test.mixin.TestMixin
 import grails.test.mixin.support.GrailsUnitTestMixin
 import me.w2x.blog.controller.admin.post.PostMgrController
 import me.w2x.blog.domain.Category
+import me.w2x.blog.domain.Draft
 import me.w2x.blog.domain.Post
 import me.w2x.blog.enu.PostStatus
 import me.w2x.blog.service.PostMgrService
@@ -20,7 +21,7 @@ import javax.servlet.http.HttpServletResponse
  */
 @TestFor(PostMgrController)
 @TestMixin([GrailsUnitTestMixin])
-@Mock([PostMgrService, Category, Post])
+@Mock([PostMgrService, Category, Post, Draft])
 @Build([Post, Category])
 class PostMgrControllerSpec extends Specification {
 
@@ -70,5 +71,19 @@ class PostMgrControllerSpec extends Specification {
         then:
         controller.response.status == HttpServletResponse.SC_OK
         Post.get(post.id)?.title == 'title002'
+    }
+
+    void "test save draft"() {
+        when:
+        controller.request.method = 'POST'
+        controller.params.title = 'title002'
+        controller.params.categoryId = category.id
+        controller.params.raw = 'raw001'
+        controller.params.content = 'content001'
+        controller.saveDraft()
+
+        then:
+        controller.response.status == HttpServletResponse.SC_OK
+        controller.response.json?.id
     }
 }

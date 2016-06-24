@@ -1,6 +1,7 @@
 package me.w2x.blog.controller.admin.post
 
 import grails.converters.JSON
+import me.w2x.blog.command.DraftCommand
 import me.w2x.blog.command.PostCommand
 import me.w2x.blog.controller.common.BaseController
 import me.w2x.blog.domain.Category
@@ -77,6 +78,17 @@ class PostMgrController extends BaseController {
             render(status: HttpServletResponse.SC_NO_CONTENT)
         } else {
             render(status: HttpServletResponse.SC_NOT_FOUND)
+        }
+    }
+
+    def saveDraft(DraftCommand command) {
+        if (command.hasErrors()) {
+            return handleCommandException(command)
+        }
+
+        def draft = postMgrService.saveOrUpdateDraft(command)
+        render(status: HttpServletResponse.SC_OK, contentType: CONTENT_TYPE_JSON) {
+            id draft.id
         }
     }
 }

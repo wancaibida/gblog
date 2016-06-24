@@ -15,4 +15,5 @@ databaseChangeLog = {
     include file: 'record_add_menu.groovy'
     include file: 'record_add_button.groovy'
     include file: 'record_add_role.groovy'
+    include file: 'table_create_t_draft.groovy'
 }
