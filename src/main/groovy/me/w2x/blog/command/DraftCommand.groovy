@@ -19,7 +19,7 @@ class DraftCommand implements Validateable {
 
     String excerpt
 
-    Category category
+    Long categoryId
 
     static constraints = {
         id nullable: true
@@ -28,6 +28,6 @@ class DraftCommand implements Validateable {
         raw nullable: true
         content nullable: true
         excerpt nullable: true
-        category nullable: true
+        categoryId nullable: true
     }
 }

@@ -21,12 +21,14 @@ class PostMgrServiceSpec extends Specification {
 
     void "test add post"() {
         setup:
+        def category = Category.build(alias: 'category000')
+
         def command = new PostCommand()
         command.with {
             title = 'test title 000'
             content = 'content 000'
             raw = 'raw 000'
-            categoryId = 1L
+            categoryId = category.id
             postStatus = PostStatus.PUBLISH.key
         }
         when:
@@ -38,7 +40,8 @@ class PostMgrServiceSpec extends Specification {
 
     void "test update post"() {
         setup:
-        Post post = Post.build(title: 'title001', category: Category.build(name: 'category000'), status: PostStatus.DRAFT.key)
+        def category = Category.build(alias: 'category000')
+        Post post = Post.build(title: 'title001', category: category, status: PostStatus.DRAFT.key)
         PostCommand postCommand = new PostCommand()
         postCommand.with {
             id = post.id

@@ -138,12 +138,6 @@ grails:
     gorm:
         failOnError: true
     plugin:
-        databasemigration:
-            updateOnStart: true
-            changelogLocation: 'grails-app/migrations'
-            updateOnStartFileNames:
-                - 'changelog.groovy'
-            dropOnStart: true
         springsecurity:
             auth:
                 loginFormUrl: '/admin/login/auth'

@@ -28,8 +28,15 @@
 
     <form>
         <input type="hidden" name="id" id="id" value="${post?.id}">
+        <input type="hidden" name="draftId" id="draftId">
 
         <div style="width:90%;margin: 10px auto;">
+            <g:if test="${drafts && !id}">
+                草稿:<g:select name="drafts" from="${drafts}" optionKey="id" optionValue="title"
+                             noSelection="['null': 'Select one to recover']"/>
+                <br>
+            </g:if>
+
             标题: <input type="text" name="title" id="title" style="padding: 5px;width:300px;"
                        value="${post?.title}"><br>
             栏目:

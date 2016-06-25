@@ -114,14 +114,28 @@ class PostMgrService {
 
     def saveOrUpdateDraft(DraftCommand command) {
 
-        def draft = command.id ? Draft.get(command.id) : new Draft()
+        def draft = null
+
+        if (command.id) {
+            draft = Draft.get(command.id)
+        }
+
+        if (!draft) {
+            if (command.postId) {
+                draft = Draft.findByPost(Post.get(command.postId))
+            }
+        }
+
+        if (!draft) {
+            draft = new Draft()
+        }
         draft.with {
             post = command.postId ? Post.get(command.postId) : null
-            title = command.title
+            title = command.title ?: 'unamed'
             raw = command.raw
             content = command.content
             excerpt = command.excerpt
-            category = Category.get(command.category?.id)
+            category = Category.get(command.categoryId)
         }
         draft.save()
     }
