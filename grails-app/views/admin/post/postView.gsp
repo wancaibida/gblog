@@ -31,7 +31,7 @@
         <input type="hidden" name="draftId" id="draftId">
 
         <div style="width:90%;margin: 10px auto;">
-            <g:if test="${drafts && !id}">
+            <g:if test="${drafts}">
                 草稿:<g:select name="drafts" from="${drafts}" optionKey="id" optionValue="title"
                              noSelection="['null': 'Select one to recover']"/>
                 <br>
@@ -53,7 +53,7 @@
         </div>
 
         <div id="test-editormd">
-            <textarea style="display:none;">${post?.raw}</textarea>
+            <textarea style="display:none;" name="raw" id="raw">${post?.raw}</textarea>
         </div>
 
         <div style="width:90%;margin: 10px auto;">

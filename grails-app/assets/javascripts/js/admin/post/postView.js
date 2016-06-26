@@ -50,7 +50,6 @@ $(function () {
         data.excerpt = $("#excerpt").val();
         data.draftId = $("#draftId").val();
 
-
         saveOrUpdate(
             data,
             function () {
@@ -73,7 +72,7 @@ $(function () {
         if (draftId) {
             var result = confirm('Do you want to recover [' + $(this).find("option:selected").text() + ']');
             if (result) {
-                console.log(1111)
+                getDraft(draftId);
             }
         }
     });
@@ -112,6 +111,27 @@ $(function () {
                 error();
             }
         });
+    }
+
+    function getDraft(draftId) {
+        $.get(adminPath + 'drafts/' + draftId, function (result) {
+            if (!result) {
+                return
+            }
+
+            $("#draftId").val(result.id);
+            if (result.post && result.post.id) {
+                $("#id").val(result.post.id);
+            }
+            $("#title").val(result.title);
+            $("#excerpt").val(result.excerpt);
+            testEditor.setMarkdown(result.raw);
+            if (result.category && result.category.id) {
+                $("#categoryId").val(result.category.id);
+            }
+
+        }, 'json');
+
     }
 
     /*

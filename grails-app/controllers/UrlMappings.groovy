@@ -68,6 +68,8 @@ class UrlMappings {
 
             "/drafts"(controller: "postMgr", action: 'saveDraft', method: 'post')
 
+            "/drafts/$draftId"(controller: "postMgr", action: 'getDraft', method: 'get')
+
             "/password/reset"(controller: 'user') {
                 action = [POST: 'updatePassword']
             }

@@ -37,14 +37,17 @@ class PostMgrController extends BaseController {
         def categorys = Category.list()
         Long postId = params.long('postId')
 
-        def drafts
+        def drafts = []
         def post = null
         if (postId) {
             post = Post.get(postId)
         }
 
         if (post) {
-            drafts = [Draft.findByPost(post)]
+            def draft = Draft.findByPost(post)
+            if (draft) {
+                drafts << draft
+            }
         } else {
             drafts = Draft.findAllByPostIsNull()
         }
@@ -108,5 +111,14 @@ class PostMgrController extends BaseController {
         render(status: HttpServletResponse.SC_OK, contentType: CONTENT_TYPE_JSON) {
             id draft.id
         }
+    }
+
+    def getDraft() {
+        def draft = Draft.get(params.long('draftId'))
+        if (!draft) {
+            return render(status: HttpServletResponse.SC_NOT_FOUND)
+        }
+
+        render draft as JSON
     }
 }
