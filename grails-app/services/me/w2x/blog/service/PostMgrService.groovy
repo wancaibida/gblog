@@ -50,7 +50,7 @@ class PostMgrService {
             } else {
                 maxResults filter.pageSize
                 firstResult(((filter.page - 1) < 0 ? 0 : filter.page - 1) * filter.pageSize)
-                order('dateCreated', 'desc')
+                order('lastUpdated', 'desc')
             }
         }
     }
