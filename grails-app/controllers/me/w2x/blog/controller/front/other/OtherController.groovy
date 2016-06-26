@@ -14,4 +14,15 @@ class OtherController {
     def contact() {
         render(view: '/front/other/contact')
     }
+
+    def robots() {
+        render(
+                text:
+                        '''User-agent: *
+Disallow: /admin/
+Sitemap: http://w2x.me/sitemap.xml
+''',
+                contentType: 'text/plain'
+        )
+    }
 }

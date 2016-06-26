@@ -7,6 +7,8 @@ class UrlMappings {
 
         "/sitemap.xml"(controller: 'sitemap', action: 'index', method: 'GET')
 
+        "/robots.txt"(controller: 'other', action: 'robots', method: 'GET')
+
         "404"(view: '/front/error/404')
         "500"(view: '/front/error/500')
 
