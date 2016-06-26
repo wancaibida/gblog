@@ -1,9 +1,11 @@
 package me.w2x.blog.controller.admin.post
 
 import grails.converters.JSON
+import me.w2x.blog.command.DraftCommand
 import me.w2x.blog.command.PostCommand
 import me.w2x.blog.controller.common.BaseController
 import me.w2x.blog.domain.Category
+import me.w2x.blog.domain.Draft
 import me.w2x.blog.domain.Post
 import me.w2x.blog.service.PostMgrService
 
@@ -34,17 +36,32 @@ class PostMgrController extends BaseController {
     def view() {
         def categorys = Category.list()
         Long postId = params.long('postId')
+
+        def drafts = []
         def post = null
         if (postId) {
             post = Post.get(postId)
         }
 
-        render(view: '/admin/post/postView', model: [categorys: categorys, post: post])
+        if (post) {
+            def draft = Draft.findByPost(post)
+            if (draft) {
+                drafts << draft
+            }
+        } else {
+            drafts = Draft.findAllByPostIsNull()
+        }
+        render(view: '/admin/post/postView', model: [categorys: categorys, post: post, drafts: drafts])
     }
 
     def add(PostCommand command) {
         if (command.hasErrors()) {
             return handleValidation(command)
+        }
+
+        def draft = Draft.get(params.long('draftId'))
+        if (draft) {
+            draft.delete()
         }
 
         def post = postMgrService.add(command)
@@ -56,6 +73,11 @@ class PostMgrController extends BaseController {
     def update(PostCommand command) {
         if (command.hasErrors()) {
             return handleValidation(command)
+        }
+
+        def draft = Draft.get(params.long('draftId'))
+        if (draft) {
+            draft.delete()
         }
 
         if (!Post.get(command.id)) {
@@ -78,5 +100,25 @@ class PostMgrController extends BaseController {
         } else {
             render(status: HttpServletResponse.SC_NOT_FOUND)
         }
+    }
+
+    def saveDraft(DraftCommand command) {
+        if (command.hasErrors()) {
+            return handleCommandException(command)
+        }
+
+        def draft = postMgrService.saveOrUpdateDraft(command)
+        render(status: HttpServletResponse.SC_OK, contentType: CONTENT_TYPE_JSON) {
+            id draft.id
+        }
+    }
+
+    def getDraft() {
+        def draft = Draft.get(params.long('draftId'))
+        if (!draft) {
+            return render(status: HttpServletResponse.SC_NOT_FOUND)
+        }
+
+        render draft as JSON
     }
 }

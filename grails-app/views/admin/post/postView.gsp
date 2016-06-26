@@ -28,8 +28,15 @@
 
     <form>
         <input type="hidden" name="id" id="id" value="${post?.id}">
+        <input type="hidden" name="draftId" id="draftId">
 
         <div style="width:90%;margin: 10px auto;">
+            <g:if test="${drafts}">
+                草稿:<g:select name="drafts" from="${drafts}" optionKey="id" optionValue="title"
+                             noSelection="['null': 'Select one to recover']"/>
+                <br>
+            </g:if>
+
             标题: <input type="text" name="title" id="title" style="padding: 5px;width:300px;"
                        value="${post?.title}"><br>
             栏目:
@@ -46,7 +53,7 @@
         </div>
 
         <div id="test-editormd">
-            <textarea style="display:none;">${post?.raw}</textarea>
+            <textarea style="display:none;" name="raw" id="raw">${post?.raw}</textarea>
         </div>
 
         <div style="width:90%;margin: 10px auto;">

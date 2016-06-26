@@ -44,4 +44,8 @@ databaseChangeLog = {
         }
     }
 
+    changeSet(author: "chengang (generated)", id: "1466777601782-2") {
+        addForeignKeyConstraint(baseColumnNames: "n_category_id", baseTableName: "t_post", constraintName: "FK_1xy7vl1ameftd0veoa5g6ny87", deferrable: "false", initiallyDeferred: "false", referencedColumnNames: "id", referencedTableName: "t_category")
+    }
+
 }

@@ -15,19 +15,19 @@ $(function () {
             else {
                 isBusy = true;
                 var data = {};
-                data.id = $("#id").val();
+                data.id = $("#draftId").val();
+                data.postId = $("#id").val();
                 data.title = $('#title').val() || 'draft';
                 data.excerpt = $("#excerpt").val();
                 data.categoryId = $('#categoryId').val();
-                data.postStatus = 0;
                 data.content = this.getHTML();
                 data.raw = this.getMarkdown();
 
-                saveOrUpdate(
+                saveDraft(
                     data,
                     function (result) {
                         if (result.id) {
-                            $("#id").val(result.id);
+                            $("#draftId").val(result.id);
                         }
                         isBusy = false;
                     },
@@ -48,6 +48,7 @@ $(function () {
         data.content = testEditor.getHTML();
         data.raw = testEditor.getMarkdown();
         data.excerpt = $("#excerpt").val();
+        data.draftId = $("#draftId").val();
 
         saveOrUpdate(
             data,
@@ -66,6 +67,16 @@ $(function () {
             });
     });
 
+    $('#drafts').change(function () {
+        var draftId = this.value;
+        if (draftId) {
+            var result = confirm('Do you want to recover [' + $(this).find("option:selected").text() + ']');
+            if (result) {
+                getDraft(draftId);
+            }
+        }
+    });
+
     function saveOrUpdate(data, success, error) {
         $.ajax({
             url: adminPath + 'posts' + (data.id ? '/' + data.id : ''),
@@ -82,6 +93,45 @@ $(function () {
                 error();
             }
         });
+    }
+
+    function saveDraft(data, success, error) {
+        $.ajax({
+            url: adminPath + 'drafts',
+            data: data,
+            dataType: 'json',
+            type: 'post',
+            converters: {
+                "text json": JSON2.parse
+            },
+            success: function (result) {
+                success(result);
+            },
+            error: function (data) {
+                error();
+            }
+        });
+    }
+
+    function getDraft(draftId) {
+        $.get(adminPath + 'drafts/' + draftId, function (result) {
+            if (!result) {
+                return
+            }
+
+            $("#draftId").val(result.id);
+            if (result.post && result.post.id) {
+                $("#id").val(result.post.id);
+            }
+            $("#title").val(result.title);
+            $("#excerpt").val(result.excerpt);
+            testEditor.setMarkdown(result.raw);
+            if (result.category && result.category.id) {
+                $("#categoryId").val(result.category.id);
+            }
+
+        }, 'json');
+
     }
 
     /*

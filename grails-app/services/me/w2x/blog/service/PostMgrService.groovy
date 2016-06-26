@@ -2,8 +2,10 @@ package me.w2x.blog.service
 
 import grails.transaction.Transactional
 import me.w2x.blog.bean.PostFilter
+import me.w2x.blog.command.DraftCommand
 import me.w2x.blog.command.PostCommand
 import me.w2x.blog.domain.Category
+import me.w2x.blog.domain.Draft
 import me.w2x.blog.domain.Post
 import me.w2x.blog.enu.PostStatus
 import org.apache.commons.lang3.StringUtils
@@ -48,7 +50,7 @@ class PostMgrService {
             } else {
                 maxResults filter.pageSize
                 firstResult(((filter.page - 1) < 0 ? 0 : filter.page - 1) * filter.pageSize)
-                order('dateCreated', 'desc')
+                order('lastUpdated', 'desc')
             }
         }
     }
@@ -108,6 +110,34 @@ class PostMgrService {
 
     def delete(Post post) {
         post.delete()
+    }
+
+    def saveOrUpdateDraft(DraftCommand command) {
+
+        def draft = null
+
+        if (command.id) {
+            draft = Draft.get(command.id)
+        }
+
+        if (!draft) {
+            if (command.postId) {
+                draft = Draft.findByPost(Post.get(command.postId))
+            }
+        }
+
+        if (!draft) {
+            draft = new Draft()
+        }
+        draft.with {
+            post = command.postId ? Post.get(command.postId) : null
+            title = command.title ?: 'unamed'
+            raw = command.raw
+            content = command.content
+            excerpt = command.excerpt
+            category = Category.get(command.categoryId)
+        }
+        draft.save()
     }
 
     def getExcerpt(String content) {
