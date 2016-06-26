@@ -22,7 +22,7 @@ import javax.servlet.http.HttpServletResponse
 @TestFor(PostMgrController)
 @TestMixin([GrailsUnitTestMixin])
 @Mock([PostMgrService, Category, Post, Draft])
-@Build([Post, Category])
+@Build([Post, Category, Draft])
 class PostMgrControllerSpec extends Specification {
 
     static doWithSpring = {
@@ -85,5 +85,20 @@ class PostMgrControllerSpec extends Specification {
         then:
         controller.response.status == HttpServletResponse.SC_OK
         controller.response.json?.id
+    }
+
+    void "test get draft"() {
+        setup:
+        def draft = Draft.build(title: '1111')
+
+        when:
+        controller.request.method = 'GET'
+        controller.params.draftId = draft.id
+        controller.getDraft()
+
+        then:
+        controller.response.status == HttpServletResponse.SC_OK
+        controller.response.json.id == draft.id
+        controller.response.json.title == draft.title
     }
 }

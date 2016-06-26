@@ -3,8 +3,10 @@ package me.w2x.blog
 import grails.buildtestdata.mixin.Build
 import grails.test.mixin.integration.Integration
 import grails.transaction.Rollback
+import me.w2x.blog.command.DraftCommand
 import me.w2x.blog.command.PostCommand
 import me.w2x.blog.domain.Category
+import me.w2x.blog.domain.Draft
 import me.w2x.blog.domain.Post
 import me.w2x.blog.enu.PostStatus
 import me.w2x.blog.service.PostMgrService
@@ -13,7 +15,7 @@ import spock.lang.Specification
 
 @Integration
 @Rollback
-@Build([Post, Category])
+@Build([Post, Category, Draft])
 class PostMgrServiceSpec extends Specification {
 
     @Autowired
@@ -58,5 +60,46 @@ class PostMgrServiceSpec extends Specification {
 
         then:
         Post.get(postCommand.id)?.title == 'title002'
+    }
+
+    void "test save or update draft"() {
+        setup:
+        def category = Category.build()
+        def post = Post.build(category: category, title: 'post003')
+        def draft0 = Draft.build(title: 'draft000')
+        def draft1 = Draft.build(title: 'draft001', post: post)
+
+        when:
+        def command0 = new DraftCommand()
+        command0.with {
+            id = draft0.id
+            title = 'newdraft000'
+        }
+        postMgrService.saveOrUpdateDraft(command0)
+
+        then:
+        Draft.get(draft0.id)?.title == 'newdraft000'
+
+        when:
+        def command1 = new DraftCommand()
+        command1.with {
+            postId = post.id
+            title = 'newdraft001'
+        }
+        postMgrService.saveOrUpdateDraft(command1)
+
+        then:
+        Draft.get(draft1.id)?.title == 'newdraft001'
+
+        when:
+        def command2 = new DraftCommand()
+        command2.with {
+            title = 'draft003'
+            content = 'content003'
+        }
+        postMgrService.saveOrUpdateDraft(command2)
+
+        then:
+        Draft.findByTitle('draft003')?.content == 'content003'
     }
 }

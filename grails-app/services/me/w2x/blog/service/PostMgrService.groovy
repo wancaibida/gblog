@@ -126,9 +126,7 @@ class PostMgrService {
             }
         }
 
-        if (!draft) {
-            draft = new Draft()
-        }
+        draft = draft ?: new Draft()
         draft.with {
             post = command.postId ? Post.get(command.postId) : null
             title = command.title ?: 'unamed'

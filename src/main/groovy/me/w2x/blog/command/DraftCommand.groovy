@@ -1,7 +1,6 @@
 package me.w2x.blog.command
 
 import grails.validation.Validateable
-import me.w2x.blog.domain.Category
 
 /**
  * Created by charles.chen on 6/24/16.
