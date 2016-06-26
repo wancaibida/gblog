@@ -16,13 +16,10 @@ class OtherController {
     }
 
     def robots() {
-        render(
-                text:
-                        '''User-agent: *
+        def plainText = '''User-agent: *
 Disallow: /admin/
 Sitemap: http://w2x.me/sitemap.xml
-''',
-                contentType: 'text/plain'
-        )
+'''
+        render(text: plainText, contentType: 'text/plain')
     }
 }
