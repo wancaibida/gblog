@@ -39,7 +39,7 @@ class PostMgrService {
 
             if (filter.year) {
                 DateTime start = new DateTime(filter.year, filter.month ?: 1, 1, 0, 0, 0)
-                DateTime end = new DateTime(filter.year, filter.month ?: 12, start.dayOfMonth().minimumValue, 23, 59, 59)
+                DateTime end = new DateTime(filter.year, filter.month ?: 12, start.dayOfMonth().maximumValue, 23, 59, 59)
                 between('dateCreated', start.toDate(), end.toDate())
             }
 
@@ -64,14 +64,15 @@ class PostMgrService {
     }
 
     def getArchives() {
-        Post.executeQuery('''
+        Post.executeQuery("""
             select
             max(p.dateCreated) as dateCreated,
             count(p.id) as count
             from Post p
+            where p.status = ${PostStatus.PUBLISH.key}
             group by concat(year(p.dateCreated),'-',month(p.dateCreated))
             order by concat(year(p.dateCreated),'-',month(p.dateCreated)) desc
-''')
+""")
     }
 
     def getPosts(String where, int page, int pageSize, String sort, String sortOrder) {
