@@ -249,7 +249,10 @@ my:
         secretKey: "${SECRET_KEY}"
         bucketname: "${BUCKETNAME}"
         dumpPath: "${DUMP_PATH}"
-
+        ossEndPoint: "${OSS_END_POINT}"
+        ossAccessKeyId: "${OSS_ACCESS_KEY_ID}"
+        ossAccessKeySecret: "${OSS_ACCESS_KEY_SECRET}"
+        ossBucketName: "${OSS_BUCKET_NAME}"
 
 sequence:
     ShortenUrl:

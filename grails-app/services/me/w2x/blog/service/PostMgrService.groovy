@@ -43,6 +43,8 @@ class PostMgrService {
                 between('dateCreated', start.toDate(), end.toDate())
             }
 
+            ne('isDeleted', true)
+
             if (isCount) {
                 projections {
                     count('id')
@@ -58,6 +60,7 @@ class PostMgrService {
     def getRecentPosts(Integer count) {
         Post.withCriteria {
             'eq'('status', PostStatus.PUBLISH.key)
+            'ne'('isDeleted', true)
             maxResults count
             order('dateCreated', 'desc')
         }
@@ -69,15 +72,15 @@ class PostMgrService {
             max(p.dateCreated) as dateCreated,
             count(p.id) as count
             from Post p
-            where p.status = ${PostStatus.PUBLISH.key}
+            where p.status = ${PostStatus.PUBLISH.key} and p.isDeleted = false
             group by concat(year(p.dateCreated),'-',month(p.dateCreated))
             order by concat(year(p.dateCreated),'-',month(p.dateCreated)) desc
 """)
     }
 
     def getPosts(String where, int page, int pageSize, String sort, String sortOrder) {
-        def queryHql = 'from Post as p left join fetch p.category'
-        def countHql = 'select count(*) from Post'
+        def queryHql = 'from Post as p left join fetch p.category where p.isDeleted = false'
+        def countHql = 'select count(*) from Post where isDeleted = false'
         baseService.getGridData(countHql, queryHql, where, page, pageSize, "p.${sort}", sortOrder)
     }
 
@@ -110,7 +113,10 @@ class PostMgrService {
     }
 
     def delete(Post post) {
-        post.delete()
+        post.with {
+            isDeleted = true
+            save()
+        }
     }
 
     def saveOrUpdateDraft(DraftCommand command) {
@@ -123,7 +129,7 @@ class PostMgrService {
 
         if (!draft) {
             if (command.postId) {
-                draft = Draft.findByPost(Post.get(command.postId))
+                draft = Draft.findByPost(Post.findByIdAndIsDeleted(command.postId, false))
             }
         }
 

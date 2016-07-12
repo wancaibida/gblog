@@ -1,8 +1,8 @@
 package me.w2x.blog
 
-import grails.buildtestdata.mixin.Build
 import grails.test.mixin.integration.Integration
 import grails.transaction.Rollback
+import me.w2x.blog.bean.PostFilter
 import me.w2x.blog.command.DraftCommand
 import me.w2x.blog.command.PostCommand
 import me.w2x.blog.domain.Category
@@ -15,7 +15,6 @@ import spock.lang.Specification
 
 @Integration
 @Rollback
-@Build([Post, Category, Draft])
 class PostMgrServiceSpec extends Specification {
 
     @Autowired
@@ -101,5 +100,33 @@ class PostMgrServiceSpec extends Specification {
 
         then:
         Draft.findByTitle('draft003')?.content == 'content003'
+    }
+
+    void 'test delete post'() {
+        setup:
+        def category = Category.build()
+        def post = Post.build(category: category, title: 'post003')
+
+        when:
+        postMgrService.delete(post)
+
+        then:
+        Post.get(post.id)?.isDeleted
+    }
+
+    void 'test query post'() {
+        setup:
+        def category = Category.build()
+        Post.build(category: category, title: 'post000', status: PostStatus.PUBLISH.key)
+        Post.build(category: category, title: 'post001', status: PostStatus.PUBLISH.key)
+        Post.build(category: category, title: 'post002', isDeleted: true, status: PostStatus.PUBLISH.key)
+
+        when:
+        def (total, listResult, pageCount) = postMgrService.getPosts(new PostFilter(sort: 'id', sortOrder: 'desc'))
+
+        then:
+        total == 2
+        listResult.size() == 2
+        pageCount == 1
     }
 }

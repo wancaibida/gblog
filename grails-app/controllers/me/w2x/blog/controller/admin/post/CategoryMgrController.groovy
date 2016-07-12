@@ -43,6 +43,12 @@ class CategoryMgrController extends BaseController {
         def category = Category.get(categoryId)
         if (!category) {
             render(status: HttpServletResponse.SC_NOT_FOUND)
+            return
+        }
+
+        if (categoryId == 1l) {
+            render(status: HttpServletResponse.SC_FORBIDDEN)
+            return
         }
 
         categoryMgrService.deleteCategory(category)

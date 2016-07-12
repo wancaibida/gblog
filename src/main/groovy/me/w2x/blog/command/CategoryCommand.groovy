@@ -26,6 +26,7 @@ class CategoryCommand implements Validateable {
                 if (obj.id) {
                     id != obj.id
                 }
+                isDeleted == false
             }.list()
             !category
         })

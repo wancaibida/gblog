@@ -69,6 +69,8 @@ dependencies {
     compile 'org.liquibase:liquibase-core:3.3.2'
     compile 'org.grails.plugins:build-test-data:3.0.0'
     compile group: 'com.qiniu', name: 'qiniu-java-sdk', version: '7.1.0'
+    compile group: 'com.mashape.unirest', name: 'unirest-java', version: '1.4.9'
+    compile group: 'com.aliyun.oss', name: 'aliyun-sdk-oss', version: '2.2.3'
 
     console "org.grails:grails-console"
 

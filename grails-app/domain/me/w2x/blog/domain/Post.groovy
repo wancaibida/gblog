@@ -23,6 +23,8 @@ class Post {
 
     Date lastUpdated
 
+    Boolean isDeleted = Boolean.FALSE
+
     static constraints = {
         title blank: false
         raw blank: true
@@ -41,6 +43,7 @@ class Post {
         lastUpdated column: 'd_updated'
         status column: 'n_status'
         category column: 'n_category_id', fetch: 'join'
+        isDeleted column: 'b_is_deleted'
         version false
     }
 

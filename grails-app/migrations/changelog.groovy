@@ -6,9 +6,9 @@ databaseChangeLog = {
     include file: 'table_create_t_user.groovy'
     include file: 'table_create_t_role.groovy'
     include file: 'table_create_t_user_role.groovy'
+    include file: 'table_create_t_category.groovy'
     include file: 'table_create_t_post.groovy'
     include file: 'table_create_t_menu.groovy'
-    include file: 'table_create_t_category.groovy'
     include file: 'table_create_t_button.groovy'
     include file: 'table_create_sequence.groovy'
     include file: 'table_create_t_session.groovy'
@@ -16,4 +16,5 @@ databaseChangeLog = {
     include file: 'record_add_button.groovy'
     include file: 'record_add_role.groovy'
     include file: 'table_create_t_draft.groovy'
+    include file: 'table_update_t_post_and_t_category.groovy'
 }

@@ -8,6 +8,7 @@ class Category {
     String name
     String alias
     Long parentId = 0L
+    Boolean isDeleted = Boolean.FALSE
 
     static constraints = {
         id nullable: true
@@ -21,6 +22,7 @@ class Category {
                 if (obj.id) {
                     id != obj.id
                 }
+                isDeleted == Boolean.FALSE
             }.list()
             !category
         })
@@ -34,5 +36,6 @@ class Category {
         name column: 's_name'
         alias column: 's_alias'
         parentId column: 'n_parent_id'
+        isDeleted column: 'b_is_deleted'
     }
 }

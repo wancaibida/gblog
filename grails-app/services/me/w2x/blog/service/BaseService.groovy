@@ -1,14 +1,10 @@
 package me.w2x.blog.service
 
 import grails.transaction.Transactional
-import grails.util.Environment
-import grails.web.context.ServletContextHolder
 import groovy.json.JsonSlurper
 import org.apache.commons.lang3.StringUtils
 import org.apache.commons.lang3.math.NumberUtils
-import org.grails.web.util.GrailsApplicationAttributes
 import org.hibernate.Query
-import org.springframework.context.ApplicationContext
 
 @Transactional
 class BaseService {
@@ -24,7 +20,14 @@ class BaseService {
 
     @SuppressWarnings('ParameterCount')
     def getGridData(String paramCountHql, String paramQueryHql, String where, int page, int pageSize, String sort, String sortOrder) {
-        def sufix = new StringBuilder(' where ')
+        def sufix
+
+        if (StringUtils.containsIgnoreCase(paramCountHql, 'where') && StringUtils.containsIgnoreCase(paramQueryHql, 'where')) {
+            sufix = new StringBuilder(' AND ')
+        } else {
+            sufix = new StringBuilder(' where ')
+        }
+
         def filterGroup = [:]
         if (where) {
             filterGroup = new JsonSlurper().parseText(where) as Map

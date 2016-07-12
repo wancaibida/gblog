@@ -3,6 +3,7 @@ package me.w2x.blog.service
 import grails.transaction.Transactional
 import me.w2x.blog.command.CategoryCommand
 import me.w2x.blog.domain.Category
+import me.w2x.blog.domain.Post
 import me.w2x.blog.exception.CommandException
 
 @Transactional
@@ -35,7 +36,13 @@ class CategoryMgrService {
         if (children) {
             throw new CommandException('error.category.children.exist')
         }
-        category.delete()
+
+        Post.executeUpdate('update Post p set p.category = :c0 where p.category = :c1', [c0: Category.get(1L), c1: category])
+
+        category.with {
+            isDeleted = true
+            save()
+        }
     }
 
     def listParentCategorys(Long categoryId) {
@@ -49,6 +56,7 @@ class CategoryMgrService {
                         FROM
                          t_category
                         WHERE
+                         b_is_deleted = false AND
                          ID NOT IN (
                           SELECT
                            res. ID
@@ -60,6 +68,7 @@ class CategoryMgrService {
                              FROM
                               t_category
                              WHERE
+                              b_is_deleted = false AND
                               ID = :id
                              UNION ALL
                               SELECT
@@ -68,6 +77,7 @@ class CategoryMgrService {
                                t_category,
                                r
                               WHERE
+                               t_category.b_is_deleted = false AND
                                t_category.n_parent_id = r. ID
                             ) SELECT
                              *
