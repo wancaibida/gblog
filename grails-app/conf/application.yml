@@ -245,14 +245,15 @@ my:
     project:
         name: 'w2x'
         domain: 'w2x.me'
-        accessKey: "${ACCESS_KEY}"
-        secretKey: "${SECRET_KEY}"
-        bucketname: "${BUCKETNAME}"
-        dumpPath: "${DUMP_PATH}"
+        accessKey: ${ACCESS_KEY}
+        secretKey: ${SECRET_KEY}
+        bucketname: ${BUCKETNAME}
+        dumpPath: ${DUMP_PATH}
         ossEndPoint: "${OSS_END_POINT}"
-        ossAccessKeyId: "${OSS_ACCESS_KEY_ID}"
-        ossAccessKeySecret: "${OSS_ACCESS_KEY_SECRET}"
-        ossBucketName: "${OSS_BUCKET_NAME}"
+        ossAccessKeyId: ${OSS_ACCESS_KEY_ID}
+        ossAccessKeySecret: ${OSS_ACCESS_KEY_SECRET}
+        ossBucketName: ${OSS_BUCKET_NAME}
+        serverUrl: ${SERVER_URL}
 
 sequence:
     ShortenUrl:

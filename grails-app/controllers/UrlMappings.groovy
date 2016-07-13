@@ -4,6 +4,7 @@ class UrlMappings {
     static mappings = {
 
         "/"(controller: "post", action: 'index', method: 'GET')
+        "/index"(controller: "post", action: 'index', method: 'GET')
 
         "/sitemap.xml"(controller: 'sitemap', action: 'index', method: 'GET')
 

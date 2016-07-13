@@ -7,6 +7,7 @@ import me.w2x.blog.command.PostCommand
 import me.w2x.blog.domain.Category
 import me.w2x.blog.domain.Draft
 import me.w2x.blog.domain.Post
+import me.w2x.blog.enu.ActionTypes
 import me.w2x.blog.enu.PostStatus
 import org.apache.commons.lang3.StringUtils
 import org.joda.time.DateTime
@@ -15,6 +16,8 @@ import org.joda.time.DateTime
 class PostMgrService {
 
     BaseService baseService
+
+    StaticService staticService
 
     def getPosts(PostFilter filter) {
         def countResult = getPosts(filter, true)
@@ -96,6 +99,8 @@ class PostMgrService {
             category = Category.get(command.categoryId)
         }
         post.save()
+        staticService.triggerPostEvent(post, ActionTypes.ADD)
+        post
     }
 
     def update(PostCommand command) {
@@ -110,6 +115,8 @@ class PostMgrService {
             category = Category.get(command.categoryId)
         }
         post.save()
+        staticService.triggerPostEvent(post, ActionTypes.EDIT)
+        post
     }
 
     def delete(Post post) {
@@ -117,6 +124,9 @@ class PostMgrService {
             isDeleted = true
             save()
         }
+
+        staticService.triggerPostEvent(post, ActionTypes.DELETE)
+        post
     }
 
     def saveOrUpdateDraft(DraftCommand command) {
