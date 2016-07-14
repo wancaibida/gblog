@@ -1,12 +1,11 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%
-    String path = request.getContextPath();
-    String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path + "/";
+    String basePath = "/";
 %>
 <html>
 
 <head>
-    <title></title>
+    <title>${title}</title>
 </head>
 
 
@@ -28,7 +27,7 @@
                             </span>
 
                             <span class="post-date">
-                                <a href="${basePath}post/date/<g:formatDate
+                                <a href="${basePath}posts/date/<g:formatDate
                                         date="${post.dateCreated}"
                                         format="yyyy"/>/<g:formatDate date="${post.dateCreated}"
                                                                       format="MM"/>">
@@ -40,9 +39,9 @@
                                 </a>
                             </span>
 
-                            <span class="post-author">
-                                <a href="${basePath}post/user/">admin</a>
-                            </span>
+                            %{--<span class="post-author">--}%
+                                %{--<a href="${basePath}post/user/">admin</a>--}%
+                            %{--</span>--}%
 
                         </div>
                     </header>
@@ -101,34 +100,34 @@
 
     </div>
 
-    <div class="row">
-        <div class="col-lg-8 entry">
-            <nav class="text-center">
-                <ul class="pagination">
-                    <g:if test="${pageCount}">
-                        <li>
-                            <a href="?page=1" aria-label="Previous">
-                                <span aria-hidden="true">&laquo;</span>
-                            </a>
-                        </li>
+    %{--<div class="row">--}%
+        %{--<div class="col-lg-8 entry">--}%
+            %{--<nav class="text-center">--}%
+                %{--<ul class="pagination">--}%
+                    %{--<g:if test="${pageCount}">--}%
+                        %{--<li>--}%
+                            %{--<a href="?page=1" aria-label="Previous">--}%
+                                %{--<span aria-hidden="true">&laquo;</span>--}%
+                            %{--</a>--}%
+                        %{--</li>--}%
 
 
-                        <g:each in="${pageCount}" var="i">
-                            <li>
-                                <a href="?page=${i}">${i}</a>
-                            </li>
-                        </g:each>
+                        %{--<g:each in="${pageCount}" var="i">--}%
+                            %{--<li>--}%
+                                %{--<a href="?page=${i}">${i}</a>--}%
+                            %{--</li>--}%
+                        %{--</g:each>--}%
 
-                        <li>
-                            <a href="?page=${pageCount}" aria-label="Next">
-                                <span aria-hidden="true">&raquo;</span>
-                            </a>
-                        </li>
-                    </g:if>
-                </ul>
-            </nav>
-        </div>
-    </div>
+                        %{--<li>--}%
+                            %{--<a href="?page=${pageCount}" aria-label="Next">--}%
+                                %{--<span aria-hidden="true">&raquo;</span>--}%
+                            %{--</a>--}%
+                        %{--</li>--}%
+                    %{--</g:if>--}%
+                %{--</ul>--}%
+            %{--</nav>--}%
+        %{--</div>--}%
+    %{--</div>--}%
 </div>
 </body>
 </html>

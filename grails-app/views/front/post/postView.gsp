@@ -1,7 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%
-    String path = request.getContextPath();
-    String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path + "/";
+    String basePath = "/";
 %>
 <html>
 
@@ -21,7 +20,7 @@
 
                     <div class="entry-meta">
                         <span class="post-category">
-                            <a href="${basePath}post/category/${post.category.alias}">${post.category.name}</a>
+                            <a href="${basePath}categorys/${post?.category?.alias}">${post?.category?.name}</a>
                         </span>
 
                         <span class="post-date">
@@ -38,9 +37,9 @@
                             </a>
                         </span>
 
-                        <span class="post-author">
-                            <a href="${basePath}post/user/${post.category.id}">${post.category.name}</a>
-                        </span>
+                        %{--<span class="post-author">--}%
+                            %{--<a href="${basePath}post/user/${post.category.id}">${post.category.name}</a>--}%
+                        %{--</span>--}%
 
                         <span class="comments-link">
                             <a href="#ds-reset" class="ds-thread-count" data-thread-key="${post.id}"

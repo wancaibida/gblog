@@ -244,7 +244,7 @@ environments:
 my:
     project:
         name: 'w2x'
-        domain: 'w2x.me'
+        domain: 'W2X'
         accessKey: ${ACCESS_KEY}
         secretKey: ${SECRET_KEY}
         bucketname: ${BUCKETNAME}

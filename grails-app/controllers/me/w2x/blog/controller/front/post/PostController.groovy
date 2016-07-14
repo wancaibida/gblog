@@ -17,8 +17,16 @@ class PostController extends BaseController {
 
     def index() {
         def (total, posts, pageCount) = postMgrService.getPosts(searchFilter)
+        def title = 'W2X'
+        if (searchFilter.category) {
+            title = searchFilter.category?.name
+        } else if (searchFilter.year && searchFilter.month) {
+            title = "${searchFilter.year}-${searchFilter.month}"
+        }
+
         render(view: '/front/post/postList',
                 model: [
+                        title      : title,
                         total      : total,
                         posts      : posts,
                         pageCount  : pageCount,
@@ -41,10 +49,10 @@ class PostController extends BaseController {
         def filter = new PostFilter()
         filter.with {
             page = params.int('page', 1)
-            pageSize = params.int('pageSize', 10)
             category = Category.findByAlias(params['alias'])
             year = params.long('year')
             month = params.long('month')
+            pageSize = (category || (year && month)) ? Integer.MAX_VALUE : 5
         }
         filter
     }
