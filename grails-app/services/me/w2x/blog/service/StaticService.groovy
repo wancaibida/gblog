@@ -21,7 +21,7 @@ class StaticService {
     static final SITE_MAP = Collections.unmodifiableMap([
             singlePost: 'posts/%s',
             category  : 'categorys/%s',
-            index     : 'index',
+            index     : 'index.html',
             archive   : 'posts/date/%s/%s'
     ])
 
@@ -94,7 +94,6 @@ class StaticService {
     }
 
     String getServerUrl() {
-        println  grailsApplication.config.my.project.serverUrl as String
         grailsApplication.config.my.project.serverUrl as String
     }
 

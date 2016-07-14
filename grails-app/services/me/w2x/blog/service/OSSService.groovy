@@ -1,7 +1,10 @@
 package me.w2x.blog.service
 
 import com.aliyun.oss.OSSClient
+import com.aliyun.oss.model.ObjectMetadata
 import grails.core.GrailsApplication
+import me.w2x.blog.bean.Constant
+import org.apache.commons.io.FilenameUtils
 
 /**
  * Created by charles.chen on 7/11/16.
@@ -10,7 +13,12 @@ class OssService {
     GrailsApplication grailsApplication
 
     void upload(String key, InputStream inputStream) {
-        client.putObject(bucketName, key, inputStream)
+        ObjectMetadata metadata = new ObjectMetadata()
+        if (!FilenameUtils.getExtension(key)) {
+            metadata.setContentType('text/html')
+        }
+//        metadata.setContentEncoding(Constant.DEFAULT_ENCODING)
+        client.putObject(bucketName, key, inputStream, metadata)
     }
 
     void delete(String key) {
