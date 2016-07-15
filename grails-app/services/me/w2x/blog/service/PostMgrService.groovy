@@ -106,13 +106,18 @@ class PostMgrService {
     def update(PostCommand command) {
         def category = Category.get(command.categoryId)
         def post = Post.get(command.id)
+
+        if (post.category && command.categoryId != post.category.id) {
+            staticService.triggerCategoryEvent(post.category, ActionTypes.EDIT)
+        }
+
         post.with {
             title = command.title
             excerpt = command.excerpt ?: getExcerpt(command.content)
             raw = command.raw
             content = command.content
             status = command.postStatus as Integer
-            category = Category.get(command.categoryId)
+            it.category = category
         }
         post.save()
         staticService.triggerPostEvent(post, ActionTypes.EDIT)

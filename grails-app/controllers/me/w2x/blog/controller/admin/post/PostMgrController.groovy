@@ -8,12 +8,15 @@ import me.w2x.blog.domain.Category
 import me.w2x.blog.domain.Draft
 import me.w2x.blog.domain.Post
 import me.w2x.blog.service.PostMgrService
+import me.w2x.blog.service.StaticService
 
 import javax.servlet.http.HttpServletResponse
 
 class PostMgrController extends BaseController {
 
     PostMgrService postMgrService
+
+    StaticService staticService
 
     def index() {
         if (request.xhr) {
@@ -120,5 +123,10 @@ class PostMgrController extends BaseController {
         }
 
         render draft as JSON
+    }
+
+    def staticAll() {
+        staticService.staticAll()
+        render(status: HttpServletResponse.SC_OK)
     }
 }

@@ -1,5 +1,6 @@
 package me.w2x.blog.bean
 
+import me.w2x.blog.domain.Category
 import me.w2x.blog.enu.ActionTypes
 
 /**

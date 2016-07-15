@@ -4,12 +4,15 @@ import grails.transaction.Transactional
 import me.w2x.blog.command.CategoryCommand
 import me.w2x.blog.domain.Category
 import me.w2x.blog.domain.Post
+import me.w2x.blog.enu.ActionTypes
 import me.w2x.blog.exception.CommandException
 
 @Transactional
 class CategoryMgrService {
 
     def sessionFactory
+
+    StaticService staticService
 
     def addCategory(CategoryCommand command) {
         def category = new Category()
@@ -19,6 +22,8 @@ class CategoryMgrService {
             parentId = command.parentId
         }
         category.save()
+        staticService.triggerCategoryEvent(category, ActionTypes.ADD)
+        category
     }
 
     def updateCategory(CategoryCommand command) {
@@ -29,6 +34,8 @@ class CategoryMgrService {
             parentId = command.parentId
         }
         category.save()
+        staticService.triggerCategoryEvent(category, ActionTypes.EDIT)
+        category
     }
 
     def deleteCategory(Category category) {
@@ -43,6 +50,7 @@ class CategoryMgrService {
             isDeleted = true
             save()
         }
+        staticService.triggerCategoryEvent(category, ActionTypes.DELETE)
     }
 
     def listParentCategorys(Long categoryId) {

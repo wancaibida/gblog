@@ -113,6 +113,9 @@ $(function () {
                 }
                 LG.confirm("确定要删除吗?", del, selected);
                 break;
+            case 'staticAll':
+                LG.confirm("确定要全站静态化吗?", staticAll);
+                break;
         }
     }
 
@@ -127,6 +130,21 @@ $(function () {
             },
             success: function () {
                 grid.loadData();
+            }
+        });
+    }
+
+    function staticAll() {
+        $.ajax({
+            url: adminPath + "posts/staticAll",
+            data: {},
+            dataType: 'json',
+            type: 'post',
+            converters: {
+                "text json": JSON2.parse
+            },
+            success: function () {
+                LG.showSuccess('静态化成功!')
             }
         });
     }
