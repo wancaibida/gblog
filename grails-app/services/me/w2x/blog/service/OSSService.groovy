@@ -3,13 +3,14 @@ package me.w2x.blog.service
 import com.aliyun.oss.OSSClient
 import com.aliyun.oss.model.ObjectMetadata
 import grails.core.GrailsApplication
-import me.w2x.blog.bean.Constant
 import org.apache.commons.io.FilenameUtils
 
 /**
  * Created by charles.chen on 7/11/16.
  */
+@SuppressWarnings('GrailsStatelessService')
 class OssService {
+
     GrailsApplication grailsApplication
 
     void upload(String key, InputStream inputStream) {

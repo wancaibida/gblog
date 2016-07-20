@@ -31,7 +31,7 @@
                                                              format="MM"/></g:set>
                             <g:set var="dateStr"><g:formatDate date="${post.dateCreated}"
                                                                format="yyyy年MM月dd日"/></g:set>
-                            <a href="${basePath}post/date/${year}/${month}">
+                            <a href="${basePath}posts/date/${year}/${month}">
                                 <time class="entry-date"
                                       datetime="${dateStr}">${dateStr}</time>
                             </a>
