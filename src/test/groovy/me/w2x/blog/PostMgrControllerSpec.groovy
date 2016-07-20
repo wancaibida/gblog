@@ -11,6 +11,7 @@ import me.w2x.blog.domain.Draft
 import me.w2x.blog.domain.Post
 import me.w2x.blog.enu.PostStatus
 import me.w2x.blog.service.PostMgrService
+import me.w2x.blog.service.StaticService
 import spock.lang.Shared
 import spock.lang.Specification
 
@@ -27,6 +28,7 @@ class PostMgrControllerSpec extends Specification {
 
     static doWithSpring = {
         postMgrService(PostMgrService)
+        staticService(StaticService)
     }
 
     @Shared

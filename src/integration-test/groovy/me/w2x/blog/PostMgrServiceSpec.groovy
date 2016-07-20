@@ -49,7 +49,7 @@ class PostMgrServiceSpec extends Specification {
             title = 'title002'
             content = post.content
             excerpt = post.excerpt
-            categoryId = Category.findByName('category000')?.id
+            categoryId = Category.findByAlias('category000')?.id
             raw = post.raw
             postStatus = PostStatus.PUBLISH.key
         }

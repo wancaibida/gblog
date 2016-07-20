@@ -16,6 +16,7 @@ import org.joda.time.DateTime
 import java.util.concurrent.ArrayBlockingQueue
 import java.util.concurrent.BlockingQueue
 
+@SuppressWarnings(['GrailsStatelessService', 'Instanceof'])
 @Transactional
 class StaticService {
     def grailsApplication
@@ -25,7 +26,7 @@ class StaticService {
             category  : 'categorys/%s',
             index     : 'index.html',
             posts     : 'posts',
-            archive   : 'posts/date/%02d/%02d'
+            archive   : 'posts/date/%02d/%02d',
     ])
 
     OssService ossService
@@ -66,7 +67,7 @@ class StaticService {
         staticByUrl(String.format(categoryUrl, post.category.alias))
 
         DateTime time = new DateTime(post.dateCreated)
-        staticByUrl(String.format(archive, time.getYear(), time.getMonthOfYear()))
+        staticByUrl(String.format(archive, time.year, time.monthOfYear))
     }
 
     def processCategoryEvent(Category category, ActionTypes actionType) {
@@ -154,11 +155,15 @@ class StaticService {
     }
 
     def triggerPostEvent(Post post, ActionTypes actionType) {
-        blockingDeque.put(new PostEvent(post: post, actionType: actionType))
+        if (post && actionType) {
+            blockingDeque.put(new PostEvent(post: post, actionType: actionType))
+        }
     }
 
     def triggerCategoryEvent(Category category, ActionTypes actionTypes) {
-        blockingDeque.put(new CategoryEvent(category: category, actionType: actionTypes))
+        if (category && actionTypes) {
+            blockingDeque.put(new CategoryEvent(category: category, actionType: actionTypes))
+        }
     }
 
     String getServerUrl() {
