@@ -12,7 +12,11 @@
 |  SECRET_KEY |  Qiniu secret key |Yes   |
 |BUCKETNAME|Qiniu bucket name|Yes|
 |DUMP_PATH|Databse dump file path|Yes|
-
+|OSS_END_POINT|OSS Server Url|Yes|
+|OSS_ACCESS_KEY_ID|Access key id|Yes|
+|OSS_ACCESS_KEY_SECRET|Access key secret|Yes|
+|OSS_BUCKET_NAME|Oss bucket name|Yes|
+|SERVER_URL|Server url|Yes|
 
 
 ###How to startup
