@@ -18,4 +18,5 @@ script:
   - ./gradlew check --stacktrace --info
 
 after_failure:
-  - cat /home/travis/build/wancaibida/gblog/build/test-results/*.*
+  - cat /home/travis/build/wancaibida/w2x/build/reports/codenarc/main.html
+  - cat /home/travis/build/wancaibida/w2x/build/reports/codenarc
