@@ -5,6 +5,7 @@ import com.mashape.unirest.http.Unirest
 import com.mashape.unirest.http.async.Callback
 import com.mashape.unirest.http.exceptions.UnirestException
 import grails.transaction.Transactional
+import grails.util.Environment
 import me.w2x.blog.bean.CategoryEvent
 import me.w2x.blog.bean.PostEvent
 import me.w2x.blog.bean.SiteEvent
@@ -49,7 +50,9 @@ class StaticService {
 
     StaticService() {
         blockingDeque = new ArrayBlockingQueue<SiteEvent>(32)
-        staticWorker.start()
+        if (Environment.current != Environment.TEST) {
+            staticWorker.start()
+        }
     }
 
     def processPostEvent(Post post, ActionTypes actionType) {
