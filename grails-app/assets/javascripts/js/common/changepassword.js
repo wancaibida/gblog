@@ -91,9 +91,7 @@
                         LG.showError(msg);
                     }
                     else {
-                        LG.showSuccess(msg, function () {
-                            grid.loadData();
-                        });
+                        LG.showSuccess('更新密码成功!');
                     }
 
                 },

@@ -7,8 +7,9 @@
     <asset:javascript src="js/common/LG.js"/>
     <asset:javascript src="js/common/common.js"/>
     <asset:javascript src="js/admin/index/adminIndex.js"/>
+    <asset:javascript src="js/common/security.js"/>
     <asset:javascript src="js/common/changepassword.js"/>
-    <asset:javascript src="js/common/js/common/security.js"/>
+
     <title>后台管理</title>
     <script type="text/javascript">
         var modulus = '${application.modulus}';
