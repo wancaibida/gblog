@@ -129,4 +129,9 @@ class PostMgrController extends BaseController {
         staticService.staticAll()
         render(status: HttpServletResponse.SC_OK)
     }
+
+    def staticOther() {
+        staticService.staticOther()
+        render(status: HttpServletResponse.SC_OK)
+    }
 }

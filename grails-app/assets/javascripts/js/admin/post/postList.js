@@ -116,6 +116,9 @@ $(function () {
             case 'staticAll':
                 LG.confirm("确定要全站静态化吗?", staticAll);
                 break;
+            case 'staticOther':
+                LG.confirm("确定要其他静态化吗?", staticOther);
+                break;
         }
     }
 
@@ -137,6 +140,21 @@ $(function () {
     function staticAll() {
         $.ajax({
             url: adminPath + "posts/staticAll",
+            data: {},
+            dataType: 'json',
+            type: 'post',
+            converters: {
+                "text json": JSON2.parse
+            },
+            success: function () {
+                LG.showSuccess('静态化成功!')
+            }
+        });
+    }
+
+    function staticOther() {
+        $.ajax({
+            url: adminPath + "posts/staticOther",
             data: {},
             dataType: 'json',
             type: 'post',

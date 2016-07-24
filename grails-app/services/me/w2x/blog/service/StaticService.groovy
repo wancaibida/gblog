@@ -28,6 +28,10 @@ class StaticService {
             index     : 'index.html',
             posts     : 'posts',
             archive   : 'posts/date/%02d/%02d',
+            about     : 'about',
+            contact   : 'contact',
+            sitemap   : 'sitemap.xml',
+            robots    : 'robots.txt',
     ])
 
     OssService ossService
@@ -179,4 +183,9 @@ class StaticService {
         }
     }
 
+    void staticOther() {
+        ['about', 'contact', 'robots', 'sitemap'].each {
+            staticByUrl(SITE_MAP.get(it))
+        }
+    }
 }

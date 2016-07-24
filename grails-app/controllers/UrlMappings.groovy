@@ -64,6 +64,8 @@ class UrlMappings {
 
             "/posts/staticAll"(controller: "postMgr", action: 'staticAll', method: 'POST')
 
+            "/posts/staticOther"(controller: "postMgr", action: 'staticOther', method: 'POST')
+
             "/drafts"(controller: "postMgr", action: 'saveDraft', method: 'POST')
 
             "/drafts/$draftId"(controller: "postMgr", action: 'getDraft', method: 'GET')

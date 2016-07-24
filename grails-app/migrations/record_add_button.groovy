@@ -40,4 +40,12 @@ databaseChangeLog = {
             }
         }
     }
+
+    changeSet(author: "chengang", id: "20160724-0001") {
+        grailsChange {
+            change {
+                sql.execute("INSERT INTO t_button(id,s_name,s_alias,s_icon,s_menu_alias,n_sort) VALUES (12,'其他静态化','staticOther','milestone.gif','postList',5)")
+            }
+        }
+    }
 }
