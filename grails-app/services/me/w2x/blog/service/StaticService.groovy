@@ -16,6 +16,7 @@ import org.joda.time.DateTime
 
 import java.util.concurrent.ArrayBlockingQueue
 import java.util.concurrent.BlockingQueue
+import java.util.concurrent.TimeUnit
 
 @SuppressWarnings(['GrailsStatelessService', 'Instanceof'])
 @Transactional
@@ -43,6 +44,8 @@ class StaticService {
         void run() {
             for (; ;) {
                 SiteEvent event = blockingDeque.take()
+                //wait it refresh
+                TimeUnit.SECONDS.sleep(5L)
                 if (event instanceof PostEvent) {
                     processPostEvent(((PostEvent) event).post, event.actionType)
                 } else if (event instanceof CategoryEvent) {
