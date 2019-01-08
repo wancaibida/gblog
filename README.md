@@ -1,8 +1,8 @@
 #### Build Status
 - [![Build Status](https://travis-ci.org/wancaibida/gblog.svg?branch=master)](https://travis-ci.org/wancaibida/gblog)
 
-###Configurations
-|Name |Description   |Required   |
+### Configurations
+| Name | Description   | Required   |
 | ------------ | ------------ | ------------ |
 |CDN_URL   | cdn url  |Yes   |
 |ADMIN_INITIAL_PASSWORD   | Admin password  | Yes  |
@@ -19,7 +19,7 @@
 |SERVER_URL|Server url|Yes|
 
 
-###How to startup
+### How to startup
 export GRAILS_OPTS=&quot;-Dfile.encoding=UTF-8&quot;
 
 ./gradlew clean
